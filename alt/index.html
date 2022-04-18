@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Collatz lab</title>
+    <link rel="stylesheet" href="styte.css">
+    <link rel="shortcut icon" href="icon.png" type="image/png">
+    <script src="jquery.js"></script>
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <div class="container_menu">
+        <div id="item">
+            <div>
+                <h1 id="header2">Цифровая лаборатория для изучения вариаций задачи 3N+1</h1>
+            </div>
+
+            <div id="text">
+                Данная виртуальная лаборатория разработана для изучения гипотезы Коллатца, а также для
+                исследования
+                вариаций этой задачи. Так, лаборатория 3N+1 позволяет «прогонять» по гипотезе Коллатца любые
+                сколь
+                угодно большие натуральные числа. А в лаборатории новых экспериментов пользователь может
+                создавать свои
+                правила, схожие с 3n+1 дилеммой, и исследовать результаты выполнения программы.
+            </div>
+            <div id="but">
+                <button class="btn" id="btn_menu1"> Лаборатория 3N+1 </button>
+                <button class="btn" id="btn_menu2">Лаборатория новых экспериментов</button>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <header class="header" role="banner">
+            <div class="header_container">
+                <!-- <a href="" class="header_logo">
+                        3N+1
+                    </a> -->
+                <div class="header_menu">
+                    <h2 class="menu_item">Лаборатория "3N+1"</h2>
+                </div>
+            </div>
+    </div>
+    </header>
+    <main role="main">
+        <div class="container">
+            <div class="container_main">
+                <div class="main_items">
+                    <div id="collatz_text">
+                        <p id="main_text">Описание лаборатории 3n + 1 (гипотеза Коллатца)
+                            Лаборатория 3n+1 предназначена для исследования гипотезы Коллатца. Эта гипотеза гласит,
+                            что
+                            если
+                            взять любое натуральное число n и последовательно применять к нему два следующих
+                            правила:
+                            если n
+                            четное, то мы делим его на 2, а если n нечетное, то умножаем его на 3 и прибавляем 1
+                            (получаем
+                            3n+1), то в конечном итоге, какое бы начальное n мы не взяли, мы получим единицу. <br>
+                            Интересно то, что, несмотря на простоту формулировки, эта гипотеза так и остается
+                            гипотезой:
+                            на
+                            данный момент никому еще не удалось доказать или опровергнуть ее (хотя величайшие умы
+                            математики
+                            бьются над этой загадкой почти что 100 лет). Интересно то, что опровергнуть т.н.
+                            сиракузскую
+                            проблему проще, чем доказать ее. Все, что нужно, - это найти такое исходное натуральное
+                            число n
+                            (каким бы большим оно ни было), которое, применяя те 2 правила, будет или стремиться к
+                            бесконечности, или замкнется в цикле. Если вы найдете такое число, то весь мир
+                            математики
+                            узнает
+                            ваше имя!<br>
+                            Чтобы запустить «лабораторию», введите исходное натуральное число в поле и нажмите
+                            кнопку
+                            «добавить». После чего программа выведет путь этого числа (то есть все промежуточные
+                            значения)
+                            от исходного значения до единицы и количество шагов в этом пути, а также программа
+                            построит
+                            график этого пути. Также калькулятор позволяет строить несколько графиков одновременно,
+                            чтобы
+                            можно было сравнить пути разных чисел. Если хотите отчистить график, просто нажмите
+                            кнопку
+                            «отчистить».
+                        </p>
+                    </div>
+                    <div class="collatz_item">
+                        <div class="buttons">
+                            <div class="button">
+                                <input type="text" id="key">
+                            </div>
+                            <div class="button">
+                                <input type="button" id="addEl" value="Добавить">
+                                <input type="button" id="clearEl" value="Очистить">
+                            </div>
+                            <br><br>
+                        </div>
+                        <div class="main_items" id="collatz">
+                            <div id="path"></div>
+                            <br>
+                            <div id="main_info">
+                                <div id="stepLen"></div>
+                                <div id="max_num"></div>
+                                <div id="max_step"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <br><br><br>
+                <div class="main_chart">
+                    <div id="linechart_material" style="width: 950px; height: 550px"></div><br><br>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer" role="contentinfo">
+        <div class="container"></div>
+    </footer>
+    </div>
+    <script type="text/javascript" src="gcharts.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
