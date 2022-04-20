@@ -13,6 +13,7 @@ function isNumber(userInput) {
     }
     else {
         alert("Введите корректное число!");
+        document.getElementById("key").value = "";
     }
 
 }
@@ -167,24 +168,25 @@ function addButtonClick() {
     let userInput = document.getElementById("key").value;
     document.getElementById("path").innerHTML = "";
     document.getElementById("linechart_material").innerHTML = "";
-    document.getElementById("linechart_material").style.background = "#fff";
     document.getElementById("stepLen").innerHTML = ""
     document.getElementById("max_step").innerHTML = ""
     document.getElementById("max_num").innerHTML = ""
     algorithmCollatz(userInput);
-
-
+    $("#main_info").show();
+    $("#linechart_material").show();
 }
 
 function clearButtonClick() {
     arrChart = [];
     document.getElementById("path").innerHTML = "";
     document.getElementById("linechart_material").innerHTML = "";
-    document.getElementById("linechart_material").style.background = "#95c0eb";
-    document.getElementById("linechart_material").style.background = "#95c0eb";
     document.getElementById("stepLen").innerHTML = ""
     document.getElementById("max_step").innerHTML = ""
     document.getElementById("max_num").innerHTML = ""
+    document.getElementById("key").value = "";
+    $("#main_info").hide();
+    $("#linechart_material").hide();
+
 }
 
 function showMenu() {
@@ -192,7 +194,19 @@ function showMenu() {
     $(".container_menu").hide();
     $(".header").show();
     $(".footer").show();
+    document.getElementById("menu_item").innerHTML = "Лаборатория 3N+1";
 }
+
+
+function showLab() {
+    $(".container_lab").show();
+    $(".container_menu").hide();
+    $(".header").show();
+    $(".footer").show();
+    document.getElementById("menu_item").innerHTML = "Лаборатория новых эксперементов";
+}
+
+
 
 function init() {
     let button1 = document.getElementById("addEl")
@@ -201,11 +215,17 @@ function init() {
     button2.onclick = clearButtonClick;
     let button3 = document.getElementById("btn_menu1")
     button3.onclick = showMenu;
+    let button4 = document.getElementById("btn_menu2")
+    button4.onclick = showLab;
+
 }
 
+$("#linechart_material").hide();
+$("#main_info").hide();
 $(".header").hide();
 $(".footer").hide();
 $(".container_main").hide();
+$(".container_lab").hide();
 let arrChart = [];
 window.onload = init;
 
