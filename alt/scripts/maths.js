@@ -210,6 +210,7 @@ function longSubtraction(a, b) {
     return result;
 }
 
+
 function numCompare(arr1, arr2) {
     if (arr1.length > arr2.length) {
         return false;
@@ -226,9 +227,67 @@ function numCompare(arr1, arr2) {
                 return true;
             }
         }
-        return false
+        return false;
     }
 }
+
+
+function numEquality(arr1,arr2) {
+    if (arr1.length > arr2.length) {
+        return false;
+    }
+    else if (arr1.length < arr2.length) {
+        return false;
+    }
+    else {
+        for (i = 0; i < arr1.length; i += 1) {
+            if (arr1[i] > arr2[i]) {
+                return false;
+            }
+            else if (arr1[i] < arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+function sum(a, b) {
+    let result = [];
+    x = a.slice(1, a.length)
+    y = b.slice(1, b.length)
+
+    if (a[0] == b[0]) {
+        result.push(a[0]);
+        return result.concat(longSum(x, y));
+    }
+
+    if (numEquality(x,y) == true) {
+        return [0, 0];
+    }
+
+    if (numCompare(x, y) == false) {
+        result.push(a[0]);
+        return result.concat(longSubtraction(x, y));
+    }
+
+    result.push(b[0]);
+    return result.concat(longSubtraction(y,x))
+}
+
+
+function sub(a, b) {
+    if (b[1] == 0) {
+        return a;
+    }
+    b[0] = Number(!b[0]);
+    return sum(a, b);
+}
+
+a = [1,5];
+b = [1,5];
+console.log(sub(a,b));
 
 
 function shortMultiplication(a, b) {
