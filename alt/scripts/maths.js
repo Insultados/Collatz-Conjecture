@@ -23,6 +23,55 @@ function isNumber(userInput) {
 
 
 
+function checkInput(input) {
+    let zeroToNine = '0123456789';
+    let oneToNine = '123456789';
+    if (input.length == 0) {
+        return -1;
+    }
+    
+    if (input.length == 1 && zeroToNine.includes(input[0])) {
+        input = Array.from(input);
+        for (i = 0; i < input.length; i += 1) {
+            input[i] = parseInt(input[i]);
+        }
+        input.unshift(0);
+        return input;
+    }
+
+    if (input[0] == "-" && oneToNine.includes(input[1])) {
+        for (i = 2; i < input.length; i += 1) {
+            if (zeroToNine.includes(input[i]) == false) {
+                return -1;
+            }
+        }
+        input = Array.from(input);
+        input.shift();
+        for (i = 0; i < input.length; i += 1) {
+            input[i] = parseInt(input[i]);
+        }
+        input.unshift(1);
+        return  input;
+    }
+
+    if (oneToNine.includes(input[0])) {
+        for (i = 1; i < input.length; i += 1) {
+            if (zeroToNine.includes(input[i]) == false) {
+                return -1;
+            }
+        }
+        input = Array.from(input);
+        for (i = 0; i < input.length; i += 1) {
+            input[i] = parseInt(input[i]);
+        }
+        input.unshift(0);
+        return input;
+    }
+    return -1;
+}
+
+
+
 function divisionTwo(userInput) {
     let length = userInput.length;
     let result = new Array;
@@ -86,12 +135,20 @@ function plusOne(userInput) {
 
 
 function longSum(a, b) {
+    let tmp1;
+    if (numCompare(a, b) == true) {
+        tmp1 = a;
+        a = b;
+        b = tmp1;
+    }
     let tmp;
     let aLen = a.length;
     let bLen = b.length;
     let prev = 0;
     let result = [];
     let i1 = aLen - 1;
+
+
 
     for (i2 = bLen - 1; i2 > -1; i2 -= 1) {
         tmp = a[i1] + b[i2] + prev;
@@ -171,4 +228,59 @@ function numCompare(arr1, arr2) {
         }
         return false
     }
+}
+
+
+function shortMultiplication(a, b) {
+    let result = [];
+    let prev = 0;
+    let tmp;
+    for (i = (a).length - 1; i > -1; i -= 1) {
+        tmp = a[i] * b + prev;
+        result.unshift(tmp % 10);
+        prev = Math.trunc(tmp / 10);
+    }
+    if (prev != 0) {
+        result.unshift(prev);
+    }
+
+    return result;
+}
+
+
+function multiplication(a, b) {
+    let result = [];
+    let add_zeros = b.length - 1;
+    let d = new Map();
+    let tmp = [];
+    if (a == [0] || b == [0]) {
+        return [0];
+    }
+    d.set(1, a);
+    for (i = 0; i < b.length; i += 1) {
+        if (b[i] == 0) {
+            add_zeros -= 1;
+        }
+        else {
+            if (d.has(b[i]) == true) {
+                tmp = d.get(b[i]);
+                for (q = 0; q < add_zeros; q += 1) {
+                    tmp.push(0);
+                }
+                result = longSum(tmp, result);
+                
+            }
+            else {
+                tmp = shortMultiplication(a, b[i]);
+                d.set(b[i], tmp);
+                for (w = 0; w < add_zeros; w += 1) {
+                    tmp.push(0);
+                }
+                result = longSum(tmp, result);
+            }
+            add_zeros -= 1;
+        }
+    }
+
+    return result;
 }

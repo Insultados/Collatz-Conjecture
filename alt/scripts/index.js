@@ -36,6 +36,12 @@ function clearButtonClick() {
 
 }
 
+function addButtonClickLab() {
+    let userInput2 = document.getElementById("key1").value;
+    alert(checkInput(userInput2));
+
+}
+
 function showCollatz() {
     $(".container_main").show();
     $(".container_menu").hide();
@@ -64,6 +70,10 @@ function init() {
     button3.onclick = showCollatz;
     let button4 = document.getElementById("btn_LabNewExperements")
     button4.onclick = showLabNewExperements;
+    let buttonLab1 = document.getElementById("add_num1")
+    buttonLab1.onclick = addButtonClickLab;
+    let buttonLab2 = document.getElementById("clear_all1")
+    buttonLab2.onclick = clearButtonClick;
 
 }
 
@@ -148,4 +158,3 @@ function drawChart() {
 
     chart.draw(data, google.charts.Line.convertOptions(options));
 }
-
