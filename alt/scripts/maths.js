@@ -203,7 +203,7 @@ function longSubtraction(a, b) {
         }
     }
 
-    while (result[0] == 0) {
+    while (result[0] == 0 && result.length > 1) {
         result.shift();
     }
 
@@ -342,3 +342,68 @@ function multiply(a,b) {
     result = result.concat(multiplication(x,y));
     return result;
 }
+
+function div(a, b) {
+    let result = [];
+    let tmp = [], tmp2 = [];
+    let counter;
+
+    if (a == b) {
+        return [[1], [0]]
+    }
+    if (a == [0]) {
+        return [[0], b]
+    }
+
+    for (let i = 0; i < a.length; i++) {
+        tmp.push(a[i]);
+        if (tmp[0] == 0 && tmp.length > 1) {
+            tmp = tmp.slice(1,tmp.length);
+        }
+
+        if (numCompare(tmp, b) == false) {
+            tmp2 = b;
+            counter = 1;
+            while (numCompare(tmp, longSum(tmp2, b)) == false) {
+                tmp2 = longSum(tmp2, b)
+                counter += 1;
+            }
+            result.push(counter);
+            tmp = longSubtraction(tmp, tmp2);
+
+        } else {
+
+            result.push(0);
+        }
+    }
+    while (result[0] == 0 && result.length > 1) {
+        result.shift();
+    }
+
+    return [result, tmp];
+}
+
+
+function division(a, b) {
+    let result = [];
+    let mod = [];
+    if (a[0] == 0 & b[0] == 0) {
+        result = [0].concat(div(a.slice(1,a.length), b.slice(1, b.length))[0]);
+        mod = [0].concat(div(a.slice(1, a.length), b.slice(1, b.length))[1]);
+        return [result, mod];
+    }
+    if (a[0] == 1 & b[0] == 0) {
+        result = [1].concat(long_sum(div(a.slice(1, a.length), b.slice(1, b.length))[0], [1]));
+        mod = [0].concat(long_subtraction(b.slice(1, b.length), div(a.slice(1, a.length), b.slice(1, b.length))[1]));
+        return [result, mod];
+    }
+    if (a[0] == 0 & b[0] == 1) {
+        result = [1].concat(div(a.slice(1, a.length), b.slice(1, b.length))[0]);
+        mod = [0].concat(div(a.slice(1, a.length), b.slice(1, b.length))[1]);
+        return [result, mod];
+    }
+    result = [0].concat(long_sum(div(a.slice(1, a.length), b.slice(1, b.length))[0], [1]));
+    mod = [0].concat(long_subtraction(b.slice(1, b.length), div(a.slice(1, a.length), b.slice(1, b.length))[1]));
+    return [result, mod];
+}
+
