@@ -29,7 +29,7 @@ function checkInput(input) {
     if (input.length == 0) {
         return -1;
     }
-    
+
     if (input.length == 1 && zeroToNine.includes(input[0])) {
         input = Array.from(input);
         for (i = 0; i < input.length; i += 1) {
@@ -51,7 +51,7 @@ function checkInput(input) {
             input[i] = parseInt(input[i]);
         }
         input.unshift(1);
-        return  input;
+        return input;
     }
 
     if (oneToNine.includes(input[0])) {
@@ -232,7 +232,7 @@ function numCompare(arr1, arr2) {
 }
 
 
-function numEquality(arr1,arr2) {
+function numEquality(arr1, arr2) {
     if (arr1.length > arr2.length) {
         return false;
     }
@@ -263,7 +263,7 @@ function sum(a, b) {
         return result.concat(longSum(x, y));
     }
 
-    if (numEquality(x,y) == true) {
+    if (numEquality(x, y) == true) {
         return [0, 0];
     }
 
@@ -273,7 +273,7 @@ function sum(a, b) {
     }
 
     result.push(b[0]);
-    return result.concat(longSubtraction(y,x))
+    return result.concat(longSubtraction(y, x))
 }
 
 
@@ -284,10 +284,6 @@ function sub(a, b) {
     b[0] = Number(!b[0]);
     return sum(a, b);
 }
-
-a = [1,5];
-b = [1,5];
-console.log(sub(a,b));
 
 
 function shortMultiplication(a, b) {
@@ -308,38 +304,41 @@ function shortMultiplication(a, b) {
 
 
 function multiplication(a, b) {
-    let result = [];
+    let result = [0];
     let add_zeros = b.length - 1;
-    let d = new Map();
-    let tmp = [];
-    if (a == [0] || b == [0]) {
+    let d = new Set();
+    let tmp = [0];
+    if (numEquality(a, [0]) || numEquality(b, [0])) {
         return [0];
     }
-    d.set(1, a);
-    for (i = 0; i < b.length; i += 1) {
+    d[1] = a;
+    for (let i = 0; i < b.length; i++) {
         if (b[i] == 0) {
             add_zeros -= 1;
-        }
-        else {
+        } else {
             if (d.has(b[i]) == true) {
-                tmp = d.get(b[i]);
-                for (q = 0; q < add_zeros; q += 1) {
-                    tmp.push(0);
-                }
-                result = longSum(tmp, result);
-                
-            }
-            else {
+                tmp = d[d.indexOf(b[i])];
+            } else {
                 tmp = shortMultiplication(a, b[i]);
-                d.set(b[i], tmp);
-                for (w = 0; w < add_zeros; w += 1) {
-                    tmp.push(0);
-                }
-                result = longSum(tmp, result);
+                d[b[i]] = tmp;
             }
+
+
+            for (let j = 0; j < add_zeros; j++) {
+                tmp.push(0);
+            }
+            result = longSum(result, tmp);
             add_zeros -= 1;
         }
     }
+    return result;
+}
 
+
+function multiply(a,b) {
+    const x = a.slice(1,a.length);
+    const y = b.slice(1, b.length);
+    let result = [a[0]^b[0]];
+    result = result.concat(multiplication(x,y));
     return result;
 }
