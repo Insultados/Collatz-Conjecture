@@ -255,8 +255,8 @@ function numEquality(arr1, arr2) {
 
 function sum(a, b) {
     let result = [];
-    x = a.slice(1, a.length)
-    y = b.slice(1, b.length)
+    x = a.slice(1, a.length);
+    y = b.slice(1, b.length);
 
     if (a[0] == b[0]) {
         result.push(a[0]);
@@ -335,11 +335,11 @@ function multiplication(a, b) {
 }
 
 
-function multiply(a,b) {
-    const x = a.slice(1,a.length);
+function multiply(a, b) {
+    const x = a.slice(1, a.length);
     const y = b.slice(1, b.length);
-    let result = [a[0]^b[0]];
-    result = result.concat(multiplication(x,y));
+    let result = [a[0] ^ b[0]];
+    result = result.concat(multiplication(x, y));
     return result;
 }
 
@@ -348,17 +348,10 @@ function div(a, b) {
     let tmp = [], tmp2 = [];
     let counter;
 
-    if (a == b) {
-        return [[1], [0]]
-    }
-    if (a == [0]) {
-        return [[0], b]
-    }
-
     for (let i = 0; i < a.length; i++) {
         tmp.push(a[i]);
         if (tmp[0] == 0 && tmp.length > 1) {
-            tmp = tmp.slice(1,tmp.length);
+            tmp = tmp.slice(1, tmp.length);
         }
 
         if (numCompare(tmp, b) == false) {
@@ -385,25 +378,46 @@ function div(a, b) {
 
 
 function division(a, b) {
-    let result = [];
-    let mod = [];
-    if (a[0] == 0 & b[0] == 0) {
-        result = [0].concat(div(a.slice(1,a.length), b.slice(1, b.length))[0]);
-        mod = [0].concat(div(a.slice(1, a.length), b.slice(1, b.length))[1]);
+    if (numEquality(a, b)) {
+        return [[0, 1], [0, 0]];
+    }
+    if (numEquality(a, [0, 0])) {
+        return [[0, 0], [0, 0]];
+    }
+
+    tmp = div(a.slice(1, a.length), b.slice(1, b.length));
+    if (a[0] == 0 && b[0] == 0) {
+        result = [0].concat(tmp[0]);
+        mod = [0].concat(tmp[1]);
         return [result, mod];
     }
-    if (a[0] == 1 & b[0] == 0) {
-        result = [1].concat(long_sum(div(a.slice(1, a.length), b.slice(1, b.length))[0], [1]));
-        mod = [0].concat(long_subtraction(b.slice(1, b.length), div(a.slice(1, a.length), b.slice(1, b.length))[1]));
+    if (a[0] == 1 && b[0] == 0) {
+        if (numEquality(tmp[1], [0])) {
+            result = [1].concat(tmp[0]);
+            mod = [0, 0];
+        } else {
+            result = [1].concat(longSum(tmp[0], [1]));
+            mod = [0].concat(longSubtraction(b.slice(1, b.length), tmp[1]));
+        }
         return [result, mod];
     }
-    if (a[0] == 0 & b[0] == 1) {
-        result = [1].concat(div(a.slice(1, a.length), b.slice(1, b.length))[0]);
-        mod = [0].concat(div(a.slice(1, a.length), b.slice(1, b.length))[1]);
+    if (a[0] == 0 && b[0] == 1) {
+        if (numEquality(tmp[1], [0])) {
+            result = [1].concat(tmp[0]);
+            mod = [0, 0];
+        } else {
+            result = [1].concat(tmp[0]);
+            mod = [0].concat(tmp[1]);
+        }
         return [result, mod];
     }
-    result = [0].concat(long_sum(div(a.slice(1, a.length), b.slice(1, b.length))[0], [1]));
-    mod = [0].concat(long_subtraction(b.slice(1, b.length), div(a.slice(1, a.length), b.slice(1, b.length))[1]));
+    if (numEquality(tmp[1], [0])) {
+        result = [0].concat(tmp[0]);
+        mod = [0, 0];
+    } else {
+        result = [0].concat(longSum(tmp[0], [1]));
+        mod = [0].concat(longSubtraction(b.slice(1, b.length), tmp[1]));
+    }
     return [result, mod];
 }
 

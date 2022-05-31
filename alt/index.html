@@ -13,10 +13,13 @@
     <header class="header" role="banner">
         <div class="header_container">
             <div class="header_menu">
-                <h2 id="menu_item"></h2>
-                <a href="index.html" name="logo" id="menu_item1">Домой</a>
+                <div class="menu_item">
+                    <h2  id="menu_item"></h2>
+                </div>
+                <div class="menu_item" id="menu__item1">
+                    <a href="index.html" name="logo" id="menu_item1">Домой</a>
+                </div>
             </div>
-        </div>
     </header>
     <div class="container_menu">
         <div id="item">
@@ -92,11 +95,11 @@
                     <div class="collatz_item">
                         <div class="collatz_button_container">
                             <div class="button">
-                                <input type="text" id="key">
+                                <input class="collatz_button" type="text" id="key">
                             </div>
                             <div class="button">
-                                <input type="button" id="add_num" value="Добавить">
-                                <input type="button" id="clear_all" value="Очистить">
+                                <input class="collatz_button" type="button" id="add_num" value="Добавить">
+                                <input class="collatz_button" type="button" id="clear_all" value="Очистить">
                             </div>
                         </div>
                         <div class="main_info_container" id="collatz">
@@ -117,42 +120,72 @@
                 </div>
             </div>
             <div class="container_lab">
+                <div id="lab_info">
+                    <pre id="lab_info_text">    Данная лаборатория позволяет создавать свои правила по типу Гипотезы Коллатца
+    на множестве целых чисел и исследовать их на зацикленность. 
+    Программа поддерживает длинную арифметику. 
+    Важные замечания: операция И (логическое умножение) является первостепенной
+    по сравнению с операцией ИЛИ (логическое сложение);
+    «Если N div A» означает, что текущее число N делится
+    на число A нацело (остаток равен нулю); операция деления (“N = N/B”) осуществляет 
+    деление числа N на число B нацело (например, 5/3 == 1);
+    рекомендуется вводить время работы программы от 1 до 10 секунд.</pre>
+                </div>
                 <div class="lab_items">
-                    <div class="collatz_button_container">
-                        <div class="button">
-                            <input type="text" id="key1">
+                    <div class="ifBlock">
+                        <div class="if">
+                            <div class="lab_items_conditions">
+                                <div class="list_of_conditions">
+                                    <pre class="condition_text">Если</pre>
+                                    <div id="items_condition00" class="items_condition">
+                                        <pre class="condition_text" id="condition_text00">N div </pre>
+                                        <input type="text" class="condition_input" id="condition_input00">
+                                        <select class="lab_item_selector" id="lab_items_selector00">
+                                            <option value='and'>И</option>
+                                            <option value='or'> ИЛИ </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="if_button">
+                                <input type="button" id="condition_button_add" class="condition_select_button_add"
+                                    value="Добавить">
+                                <input type="button" id="condition_button_remove" class="condition_select_button_remove"
+                                    value="Удалить последнее">
+                            </div>
                         </div>
-                        <div class="button">
-                            <input type="button" id="add_num1" value="Добавить">
-                            <input type="button" id="clear_all1" value="Очистить">
+                        <div class="if_action">
+                            <pre id="if_action_text">   То N = N / </pre>
+                            <input type="text" class="condition_input" id="action_condition_input0">
                         </div>
                     </div>
-                    <!-- <div id="instruction_text_lab">
-                        <p>
-                            Чтобы запустить «лабораторию», введите исходное натуральное число в поле и нажмите
-                            кнопку
-                            «добавить». После чего программа выведет путь этого числа (то есть все промежуточные
-                            значения)
-                            от исходного значения до единицы и количество шагов в этом пути, а также программа
-                            построит
-                            график этого пути. Также калькулятор позволяет строить несколько графиков одновременно,
-                            чтобы
-                            можно было сравнить пути разных чисел. Если хотите отчистить график, просто нажмите
-                            кнопку
-                            «очистить».
-                        </p>
-                    </div> -->
-                    <div>
-                        <div id="lab_text">
-                            <p id="main_lab_text">Ваши условия:</p>
-                        </div>
-                        <div class="code_input_container">
-                            <textarea id="code_input" cols="30" rows="10"></textarea>
-                        </div>
+                    <div class="list_of_elseif">
+
+                    </div>
+                    <div class="add_conditon_buttons">
+                        <input type="button" id="elseif_button_add00" class="condition_select_button"
+                            value="Добавить условие">
+                        <input type="button" id="elseif_button_remove00" class="condition_select_button"
+                            value="Удалить условие">
+                    </div>
+                    <div class="else_action">
+                        <pre>Иначе N = N * </pre>
+                        <input type="text" class="condition_input" id="action_condition_input_else0">
+                        <pre> + </pre>
+                        <input type="text" class="condition_input" id="action_condition_input_else1">
                     </div>
                 </div>
+                <input type="button" id="create_rule" class="condition_select_button" value="Составить правило">
+                <div id="new_lab">
+
+                </div>
+                <div id="new_lab_path">
+
+                </div>
+
             </div>
         </div>
+
     </main>
     <footer class="footer" role="contentinfo">
         <div class="container"></div>
@@ -160,9 +193,12 @@
     </div>
     <script src="scripts/maths.js"></script>
     <script type="text/javascript" src="scripts/jquery.js"></script>
+
     <script type="text/javascript" src="scripts/gcharts.js"></script>
     <script src="scripts/index.js"></script>
     </wrapper>
+
+
 </body>
 
 </html>
