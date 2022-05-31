@@ -569,7 +569,7 @@ function addRule() {
 
     }
     else {
-        cycling_text.textContent = 'За отведенное время зациклинности не обнаружнено :(';
+        cycling_text.textContent = 'За отведенное время зацикленности не обнаружнено :(';
         len_step.textContent = 'Кол-во шагов за отведенное время: ' + count;
         
 
