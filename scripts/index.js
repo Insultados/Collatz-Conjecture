@@ -77,12 +77,12 @@ function init() {
     button4.onclick = showLabNewExperements;
 
     let buttonConditionAdd = document.getElementById("condition_button_add");
-    if (condition_count >= 0) {
+    if (condition_count >= 1) {
         buttonConditionAdd.onclick = addCondtion;
     }
 
     let buttonConditionRemove = document.getElementById("condition_button_remove");
-    if (condition_count >= 0) {
+    if (condition_count >= 1) {
         buttonConditionRemove.onclick = removeCondition;
     }
 
@@ -111,6 +111,12 @@ function init() {
 function addElseif() {
     let clonedNode = document.getElementById("items_condition00").cloneNode(false);
     let clonedSelect = document.getElementById("lab_items_selector00").cloneNode(true);
+
+
+    let clonedButton1 = document.getElementById("condition_button_add").cloneNode(true);
+    let clonedButton2 = document.getElementById("condition_button_remove").cloneNode(true);
+
+
     let clonedInput = document.createElement("input");
     clonedInput.className = "condition_input";
     clonedInput.id = "condition_input" + elseif_count;
@@ -143,14 +149,24 @@ function addElseif() {
     clonedInput.id = "condition_input" + elseif_count;
     document.querySelector("#items_condition" + elseif_count).append(clonedSelect);
     clonedSelect.id = "lab_items_selector" + elseif_count;
+
+    document.querySelector("#elseif" + elseif_count).append(clonedButton1);
+    clonedButton1.id = "condition_button_add" + elseif_count;
+
+    document.querySelector("#elseif" + elseif_count).appendChild(clonedButton2);
+    clonedButton2.id = "condition_select_button_remove" + elseif_count;
+
     document.querySelector("#elseifBlock" + elseif_count).append(elseifActionDiv);
     elseifActionDiv.className = "elseif_action";
     elseifActionDiv.id = "elseif_action" + elseif_count;
     document.querySelector("#elseif_action" + elseif_count).append(elemText1);
     document.querySelector("#elseif_action" + elseif_count).append(clonedInput1);
     clonedInput1.id = "action_condition_input" + elseif_count;
-    elseif_count++;
 
+    clonedButton1.onclick = addCondtionElseIf;
+    clonedButton2.onclick = removeConditionElseif;
+
+    elseif_count++;
 }
 
 function removeElseif() {
@@ -159,14 +175,15 @@ function removeElseif() {
 }
 
 function removeCondition() {
-    $("#items_condition" + 0 + (condition_count - 1)).remove();
-    $("#lab_items_selector" + 0 + (condition_count - 1)).remove();
-    condition_count--;
+    if (condition_count != 1) {
+        condition_count--;
+        $("#items_condition0" + condition_count).remove();
+        $("#lab_items_selector0" + condition_count).remove();
+    }
 
 }
 
 function addCondtion() {
-    const element = document.querySelector('#lab_items_selector00');
     let clonedNode = document.getElementById("items_condition00").cloneNode(false);
     let clonedSelect = document.getElementById("lab_items_selector00").cloneNode(true);
     let clonedInput = document.createElement("input");
@@ -174,79 +191,46 @@ function addCondtion() {
     clonedInput.id = "condition_input" + 0 + condition_count;
     let clonedText = document.getElementById("condition_text00").cloneNode(true);
 
+    clonedNode.id = "items_condition" + 0 + condition_count;
+    document.querySelector("div.list_of_conditions").append(clonedNode);
+    document.querySelector("#items_condition" + 0 + condition_count).append(clonedText);
+    clonedText.id = "condition_text" + 0 + condition_count;
+    document.querySelector("#items_condition" + 0 + condition_count).append(clonedInput);
+    clonedInput.id = "condition_input" + 0 + condition_count;
+    document.querySelector("#items_condition" + 0 + condition_count).append(clonedSelect);
+    clonedSelect.id = "lab_items_selector" + 0 + condition_count;
 
+    condition_count++;
 
-
-    if (element.value == "and") {
-        clonedNode.id = "items_condition" + 0 + condition_count;
-        document.querySelector("div.list_of_conditions").append(clonedNode);
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedText);
-        clonedText.id = "condition_text" + 0 + condition_count;
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedInput);
-        clonedInput.id = "condition_input" + 0 + condition_count;
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedSelect);
-        clonedSelect.id = "lab_items_selector" + 0 + condition_count;
-        condition_count++;
-    }
-    else {
-        clonedNode.id = "items_condition" + 0 + condition_count;
-        document.querySelector("div.list_of_conditions").append(clonedNode);
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedText);
-        clonedText.id = "condition_text" + 0 + condition_count;
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedInput);
-        clonedInput.id = "condition_input" + 0 + condition_count;
-        document.querySelector("#items_condition" + 0 + condition_count).append(clonedSelect);
-        clonedSelect.id = "lab_items_selector" + 0 + condition_count;
-        condition_count++;
-    }
 }
 
 function removeConditionElseif() {
-    $("#items_condition" + condition_count).remove();
-    $("#lab_items_selector" + condition_count).remove();
     condition_count--;
+    $("#items_condition" + (elseif_count - 1) + condition_count).remove();
+    $("#lab_items_selector" + (elseif_count - 1) + condition_count).remove();
 
 }
 
-function addCondtionElseif() {
-    const element = document.querySelector('#lab_items_selector00');
+function addCondtionElseIf() {
     let clonedNode = document.getElementById("items_condition00").cloneNode(false);
     let clonedSelect = document.getElementById("lab_items_selector00").cloneNode(true);
     let clonedInput = document.createElement("input");
     clonedInput.className = "condition_input";
-    clonedInput.id = "condition_input" + elseif_count + condition_count;
+    clonedInput.id = "condition_input" + (elseif_count - 1) + condition_count;
     let clonedText = document.getElementById("condition_text00").cloneNode(true);
 
 
-
-
-    if (element.value == "and") {
-        document.querySelector("#elseif" + (elseif_count - 2) + condition_count).append(clonedNode);
-        clonedNode.id = "items_condition" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedText);
-        clonedText.id = "condition_text" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedInput);
-        clonedInput.id = "condition_input" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedSelect);
-        clonedSelect.id = "lab_items_selector" + condition_count;
-        condition_count++;
-
-
-    }
-    else {
-        document.querySelector("div.list_of_conditions").append(clonedNode);
-        clonedNode.id = "items_condition" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedText);
-        clonedText.id = "condition_text" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedInput);
-        clonedInput.id = "condition_input" + condition_count;
-        document.querySelector("#items_condition" + condition_count).append(clonedSelect);
-        clonedSelect.id = "lab_items_selector" + condition_count;
-        condition_count++;
-
-    }
-
+    clonedNode.id = "items_condition" + (elseif_count - 1) + condition_count;
+    document.querySelector("#items_condition" + (elseif_count-1)).append(clonedNode);
+    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedText);
+    clonedText.id = "condition_text" + (elseif_count - 1) + condition_count;
+    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedInput);
+    clonedInput.id = "condition_input" + (elseif_count - 1) + condition_count;
+    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedSelect);
+    clonedSelect.id = "lab_items_selector" + (elseif_count - 1) + condition_count;
+    condition_count++;
 }
+
 
 function algorithmCollatz(userInput) {
     let index;
@@ -257,7 +241,7 @@ function algorithmCollatz(userInput) {
     let number = count;
     let path = document.getElementById("path");
     userInput = isNumber(userInput);
-    path.innerHTML += (count+1) + ") " + userInput.join('') + "</br>";
+    path.innerHTML += (count + 1) + ") " + userInput.join('') + "</br>";
 
     curr = userInput;
     num = parseInt(userInput.join(''));
@@ -294,7 +278,7 @@ function algorithmCollatz(userInput) {
         len = userInput.length;
 
 
-        path.innerHTML += (count+1) + ") " + userInput.join('') + "</br>";
+        path.innerHTML += (count + 1) + ") " + userInput.join('') + "</br>";
     }
     for (i = count + 1; i < arrChart.length; i += 1) {
         arrChart[i][index] = null;
@@ -465,7 +449,7 @@ function addRule() {
     $("#new_lab_path").show();
     let end = 0;
     let start = new Date().getTime();
-    
+
     let len_step = document.createElement("pre");
     len_step.id = "len_step1";
 
@@ -487,7 +471,7 @@ function addRule() {
 
 
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
-    while (array_includes(path, user_input) == false && ((end-start) < parseInt(document.getElementById("userTimerInput").value)*1000)) {
+    while (array_includes(path, user_input) == false && ((end - start) < parseInt(document.getElementById("userTimerInput").value) * 1000)) {
         let mas = [];
         let array = [];
 
@@ -554,7 +538,7 @@ function addRule() {
 
         if (numCompare(max_step, user_input) == true) {
             max_step = user_input;
-            
+
         }
 
         div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
@@ -571,7 +555,7 @@ function addRule() {
     else {
         cycling_text.textContent = 'За отведенное время зацикленности не обнаружнено :(';
         len_step.textContent = 'Кол-во шагов за отведенное время: ' + count;
-        
+
 
     }
 
