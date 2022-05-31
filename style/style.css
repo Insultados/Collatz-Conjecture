@@ -1,0 +1,610 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1;
+    font-size: 20px;
+    background: linear-gradient(#062954, #328dc6);
+    line-height: 2em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex: 1 0 auto;
+    margin: auto;
+    padding-top: 5%;
+}
+
+
+.header {
+    color: #ebf3ff;
+    padding: 10px;
+    width: 100vw;
+    z-index: 50;
+    background: linear-gradient(to left, #041932, #042246);
+
+}
+
+.menu_item {
+    margin: 0 10px 0 10px;
+}
+
+.header_container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.header_menu {
+    display: flex;
+    flex-direction: row-reverse;
+    font-weight: 650;
+    flex-wrap: wrap;
+}
+
+.menu_list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#main_info {
+    background-color: #cce4ff;
+    border-color: #cce4ff;
+    color: #062954;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    font-weight: 600;
+    overflow-y:scroll;
+    height: 120px;
+    padding-left: 15px;
+}
+
+#menu_item {
+    margin: auto;
+    padding: auto;
+    
+}
+
+#menu_item1 {
+    margin: auto;
+    padding: auto;
+    text-decoration: none;
+    font-size: 30px;
+    color: #cce4ff;
+    left: 2%;
+}
+
+#menu_item1:hover {
+    color: #4683c9;
+    
+}
+
+#key {
+    width: 100%;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    text-align: center;
+    font-size: 1.0em;
+    transition: 0.3s;
+}
+
+.collatz_button {
+    width: 43%;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 1.0em;
+    transition: 0.3s;
+    border-radius: 15px;
+
+}
+
+.collatz_button:hover:not(#key, #key1) {
+    background-color: #144e91;
+    color: white;
+    border-radius: 15px;
+}
+
+#path {
+    padding: 15px;
+    width: 500px;
+    height: 438px;
+    overflow: auto;
+    background: #cce4ff;
+    border-radius: 15px;
+    color: #062954;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+
+.main {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: white;
+    flex-grow: 1;
+    justify-content: center;
+
+}
+
+
+.container {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container_main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.main_items {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+}
+
+
+
+.footer {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #0f3752;
+    background: linear-gradient(to left, #0b3971, #0a4690);
+    min-width: 100wv;
+    width: 100vw;
+    height: 60px;
+
+}
+
+
+#collatz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#collatz_text {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    line-height: 1.3;
+    height: 800px;
+    color: #062954;
+    width: 400px;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+}
+
+h2 {
+    color: #cce4ff;
+}
+
+#linechart_material {
+    border-width: 15px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 15px;
+    width: 900px;
+    height: 500px
+}
+
+.collatz_item {
+    position: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    padding: 5px;
+}
+
+#main_text, #instruction_text {
+    text-align: justify;
+    min-width: 20%;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #cce4ff;
+    overflow: auto;
+    border-radius: 15px;
+}
+
+#container_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#item {
+    font-family: 'Montserrat', sans-serif;
+    margin: 10% 20%;
+}
+
+#menu_h2 {
+    text-align: center;
+    color: #ebf3ff;
+    font-size: 42px;
+}
+
+#menu_h2_text {
+    display: flex;
+}
+
+#text {
+    border: 2px solid;
+    margin: 15px;
+    padding: 10px;
+    color: #cee5ff;
+    border-color: #144e91;
+    border-radius: 10px;
+    text-align: justify;
+    font-size: 22px;
+    min-width: 300px;
+}
+
+#button_menu_container {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.collatz_button_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.button {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn {
+    width: 45%;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    padding: 16px;
+    text-align: center;
+    font-size: 1.0em;
+    transition: 0.3s;
+    border-radius: 15px;
+    word-wrap: break-word;
+}
+
+.btn:hover {
+    background-color: #144e91;
+    color: white;
+
+}
+
+.container_lab {
+    width: 800px;
+}
+
+
+#code_.collatz_button {
+    height: 400px;
+    width: 400px;
+    resize: none;
+    padding: 10px;
+    margin: 7px;
+    background: #062954;
+    color: #cee5ff;
+}
+
+.lab_items {
+    display: flex;
+    flex-direction: column;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #6892c3;
+    border-radius: 5px;
+    background-color: #77a2d3;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+
+#instruction_text_lab {
+    text-align: justify;
+    min-width: 20%;
+    padding: 5px;
+    margin-bottom: 5px;
+    height: 460px;
+    background-color: #cce4ff;
+    overflow: auto;
+    border-radius: 15px;
+    margin: 7px;
+}
+
+
+#main_lab_text {
+    color: #cee5ff;
+    font-weight: 650;
+}
+
+.if_button {
+    display: flex;
+}
+
+.items_condition {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.list_of_conditions {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.if {
+    display: flex;
+}
+
+.if_action {
+    display: flex;
+    margin-top: 10px;
+}
+
+.else_action {
+    display: flex;
+    margin-bottom: 15px;
+    margin-top: 10px;
+
+}
+
+.elseif {
+    display: flex;
+    flex-direction: column;
+    margin-left: -10px;
+}
+
+
+.list_of_elseif {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.elseif_action {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.condition_input {
+    width: 50px;
+}
+
+.lab_item_selector {
+    width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.elseifBlock {
+    margin-top: 10px;
+
+}
+
+.add_conditon_buttons {
+    padding: auto;
+    margin: 10px auto 10px auto;
+
+
+}
+
+.condition_select_button_add {
+    margin-left: 5px;
+    height: 45px;
+    cursor: pointer;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    padding: 8px 16px;
+    text-align: center;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.condition_select_button_remove {
+    margin-left: 5px;
+    height: 45px;
+    cursor: pointer;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    padding: 8px 16px;
+    text-align: center;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.condition_select_button {
+    height: 45px;
+    cursor: pointer;
+    background-color: #cce4ff;
+    border: none;
+    color: #144e91;
+    padding: 16px 32px;
+    text-align: center;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.condition_select_button:hover {
+    background-color: #144e91;
+    color: white;
+}
+
+.condition_select_button_remove:hover {
+    background-color: #144e91;
+    color: white;
+}
+
+.condition_select_button_add:hover {
+    background-color: #144e91;
+    color: white;
+}
+
+
+.add_conditon_buttons:hover {
+    background-color: #144e91;
+    color: white;
+}
+
+
+
+
+
+pre {
+    color: #102545;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.condition_input {
+    border-radius: 5px;
+    background-color: #cce4ff;
+    text-align: center;
+
+
+}
+
+select {
+    background-color: #cce4ff;
+
+    border-radius: 5px;
+}
+
+.lab_item_selector {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+#create_rule {
+    display: flex;
+    margin: auto;
+    padding: auto;
+    margin-bottom: 50px;
+}
+
+#new_lab {
+    display: flex;
+    margin-bottom: 50px;
+    flex-direction: column;
+}
+
+#new_lab_path {
+    display: flex;
+    margin: auto;
+    padding: auto;
+    flex-direction: column;
+}
+
+#userNumberInput {
+    margin: 0 10px 0 10px;
+    padding: 10px 30px 10px 30px;
+}
+
+#lab_path {
+    padding: 15px;
+    width: 500px;
+    height: 438px;
+    overflow: auto;
+    background: #cce4ff;
+    border-radius: 15px;
+    color: #062954;
+    box-sizing: border-box;
+    font-weight: 600;
+    margin: auto auto 10px auto;
+}
+
+#userTimerInput {
+    padding: 10px 30px 10px 30px;
+    margin: 0 10px 0 10px;
+}
+
+#cycling_text_block {
+    text-align: center;
+    margin: auto auto 50px auto;
+    padding: auto;
+}
+
+#user_number_div1 {
+    display: flex;
+    margin: auto;
+    padding: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#user_timer_div1 {
+    display: flex;
+    margin: auto;
+    padding: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#lab_info {
+    background-color: #77a2d3;
+    border-color: #6892c3;
+    margin-bottom: 20px;
+    overflow: auto;
+    border-radius: 10px;
+    line-height: 1.4em;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #6892c3;
+    border-radius: 5px;
+}
+
+#lab_info_text {
+    font-size: 16px;
+    background-color: #77a2d3;
+}

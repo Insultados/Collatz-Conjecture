@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Гипотеза Коллаца</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="img/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <header class="header" role="banner">
+        <div class="header_container">
+            <div class="header_menu">
+                <div class="menu_item">
+                    <h2  id="menu_item"></h2>
+                </div>
+                <div class="menu_item" id="menu__item1">
+                    <a href="index.html" name="logo" id="menu_item1">Домой</a>
+                </div>
+            </div>
+    </header>
+    <div class="container_menu">
+        <div id="item">
+            <div id="menu_h2_text">
+                <h1 id="menu_h2">Цифровая лаборатория для изучения вариаций задачи 3N+1</h1>
+            </div>
+
+            <div id="text">
+                Данная виртуальная лаборатория разработана для изучения гипотезы Коллатца, а также для
+                исследования
+                вариаций этой задачи. Так, лаборатория 3N+1 позволяет «прогонять» по гипотезе Коллатца любые
+                сколь
+                угодно большие натуральные числа. А в лаборатории новых экспериментов пользователь может
+                создавать свои
+                правила, схожие с 3n+1 дилеммой, и исследовать результаты выполнения программы.
+            </div>
+            <div id="button_menu_container">
+                <button class="btn" id="btn_Collatz"> Лаборатория 3N+1 </button>
+                <button class="btn" id="btn_LabNewExperements">Лаборатория новых экспериментов</button>
+            </div>
+        </div>
+    </div>
+    <main role="main">
+        <div class="container">
+            <div class="container_main">
+                <div class="main_items">
+                    <div id="collatz_text">
+                        <h2>Описание</h2>
+                        <div id="main_text">
+                            <p>Описание лаборатории 3n + 1 (гипотеза Коллатца)
+                                Лаборатория 3n+1 предназначена для исследования гипотезы Коллатца. Эта гипотеза гласит,
+                                что
+                                если
+                                взять любое натуральное число n и последовательно применять к нему два следующих
+                                правила:
+                                если n
+                                четное, то мы делим его на 2, а если n нечетное, то умножаем его на 3 и прибавляем 1
+                                (получаем
+                                3n+1), то в конечном итоге, какое бы начальное n мы не взяли, мы получим единицу. <br>
+                                Интересно то, что, несмотря на простоту формулировки, эта гипотеза так и остается
+                                гипотезой:
+                                на
+                                данный момент никому еще не удалось доказать или опровергнуть ее (хотя величайшие умы
+                                математики
+                                бьются над этой загадкой почти что 100 лет). Интересно то, что опровергнуть т.н.
+                                сиракузскую
+                                проблему проще, чем доказать ее. Все, что нужно, - это найти такое исходное натуральное
+                                число n
+                                (каким бы большим оно ни было), которое, применяя те 2 правила, будет или стремиться к
+                                бесконечности, или замкнется в цикле. Если вы найдете такое число, то весь мир
+                                математики
+                                узнает
+                                ваше имя!<br>
+                            </p>
+                        </div>
+                        <h2>Инструкция</h2>
+                        <div id="instruction_text">
+                            <p>
+                                Чтобы запустить «лабораторию», введите исходное натуральное число в поле и нажмите
+                                кнопку
+                                «добавить». После чего программа выведет путь этого числа (то есть все промежуточные
+                                значения)
+                                от исходного значения до единицы и количество шагов в этом пути, а также программа
+                                построит
+                                график этого пути. Также калькулятор позволяет строить несколько графиков одновременно,
+                                чтобы
+                                можно было сравнить пути разных чисел. Если хотите отчистить график, просто нажмите
+                                кнопку
+                                «очистить».
+                            </p>
+                        </div>
+                    </div>
+                    <div class="collatz_item">
+                        <div class="collatz_button_container">
+                            <div class="button">
+                                <input class="collatz_button" type="text" id="key">
+                            </div>
+                            <div class="button">
+                                <input class="collatz_button" type="button" id="add_num" value="Добавить">
+                                <input class="collatz_button" type="button" id="clear_all" value="Очистить">
+                            </div>
+                        </div>
+                        <div class="main_info_container" id="collatz">
+                            <div id="path"></div>
+                            <br>
+                            <div id="main_info">
+                                <div id="step_len"></div>
+                                <div id="max_num"></div>
+                                <div id="max_step"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="main_chart">
+                    <div id="linechart_material"></div><br><br>
+                </div>
+            </div>
+            <div class="container_lab">
+                <div id="lab_info">
+                    <pre id="lab_info_text">    Данная лаборатория позволяет создавать свои правила по типу Гипотезы Коллатца
+    на множестве целых чисел и исследовать их на зацикленность. 
+    Программа поддерживает длинную арифметику. 
+    Важные замечания: операция И (логическое умножение) является первостепенной
+    по сравнению с операцией ИЛИ (логическое сложение);
+    «Если N div A» означает, что текущее число N делится
+    на число A нацело (остаток равен нулю); операция деления (“N = N/B”) осуществляет 
+    деление числа N на число B нацело (например, 5/3 == 1);
+    рекомендуется вводить время работы программы от 1 до 10 секунд.</pre>
+                </div>
+                <div class="lab_items">
+                    <div class="ifBlock">
+                        <div class="if">
+                            <div class="lab_items_conditions">
+                                <div class="list_of_conditions">
+                                    <pre class="condition_text">Если</pre>
+                                    <div id="items_condition00" class="items_condition">
+                                        <pre class="condition_text" id="condition_text00">N div </pre>
+                                        <input type="text" class="condition_input" id="condition_input00">
+                                        <select class="lab_item_selector" id="lab_items_selector00">
+                                            <option value='and'>И</option>
+                                            <option value='or'> ИЛИ </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="if_button">
+                                <input type="button" id="condition_button_add" class="condition_select_button_add"
+                                    value="Добавить">
+                                <input type="button" id="condition_button_remove" class="condition_select_button_remove"
+                                    value="Удалить последнее">
+                            </div>
+                        </div>
+                        <div class="if_action">
+                            <pre id="if_action_text">   То N = N / </pre>
+                            <input type="text" class="condition_input" id="action_condition_input0">
+                        </div>
+                    </div>
+                    <div class="list_of_elseif">
+
+                    </div>
+                    <div class="add_conditon_buttons">
+                        <input type="button" id="elseif_button_add00" class="condition_select_button"
+                            value="Добавить условие">
+                        <input type="button" id="elseif_button_remove00" class="condition_select_button"
+                            value="Удалить условие">
+                    </div>
+                    <div class="else_action">
+                        <pre>Иначе N = N * </pre>
+                        <input type="text" class="condition_input" id="action_condition_input_else0">
+                        <pre> + </pre>
+                        <input type="text" class="condition_input" id="action_condition_input_else1">
+                    </div>
+                </div>
+                <input type="button" id="create_rule" class="condition_select_button" value="Составить правило">
+                <div id="new_lab">
+
+                </div>
+                <div id="new_lab_path">
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+    <footer class="footer" role="contentinfo">
+        <div class="container"></div>
+    </footer>
+    </div>
+    <script src="scripts/maths.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+
+    <script type="text/javascript" src="scripts/gcharts.js"></script>
+    <script src="scripts/index.js"></script>
+    </wrapper>
+
+
+</body>
+
+</html>
