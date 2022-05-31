@@ -166,12 +166,18 @@ function addElseif() {
     clonedButton1.onclick = addCondtionElseIf;
     clonedButton2.onclick = removeConditionElseif;
 
+    $("#condition_button_add" + (elseif_count - 1)).remove();
+    $("#condition_select_button_remove" + (elseif_count - 1)).remove();
+
     elseif_count++;
 }
 
 function removeElseif() {
-    elseif_count--;
-    $("#elseifBlock" + elseif_count).remove();
+
+    if (elseif_count > 1) {
+        elseif_count--;
+        $("#elseifBlock" + elseif_count).remove();
+    }
 }
 
 function removeCondition() {
@@ -205,7 +211,6 @@ function addCondtion() {
 }
 
 function removeConditionElseif() {
-    condition_count--;
     $("#items_condition" + (elseif_count - 1) + condition_count).remove();
     $("#lab_items_selector" + (elseif_count - 1) + condition_count).remove();
 
@@ -221,14 +226,13 @@ function addCondtionElseIf() {
 
 
     clonedNode.id = "items_condition" + (elseif_count - 1) + condition_count;
-    document.querySelector("#items_condition" + (elseif_count-1)).append(clonedNode);
+    document.querySelector("#items_condition" + (elseif_count - 1)).append(clonedNode);
     document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedText);
     clonedText.id = "condition_text" + (elseif_count - 1) + condition_count;
     document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedInput);
     clonedInput.id = "condition_input" + (elseif_count - 1) + condition_count;
     document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedSelect);
     clonedSelect.id = "lab_items_selector" + (elseif_count - 1) + condition_count;
-    condition_count++;
 }
 
 
@@ -236,7 +240,7 @@ function algorithmCollatz(userInput) {
     let index;
     let num;
     let count = 0;
-    let len = userInput.length;;
+    let len = userInput.length;
     let curr = [];
     let number = count;
     let path = document.getElementById("path");
