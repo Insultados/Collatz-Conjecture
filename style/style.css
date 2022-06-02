@@ -18,6 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-x: hidden;
 }
 
 main {
@@ -33,11 +34,14 @@ main {
     width: 100vw;
     z-index: 50;
     background: linear-gradient(to left, #041932, #042246);
+    min-width: 100vw;
 
 }
 
 .menu_item {
     margin: 0 10px 0 10px;
+    font-weight: 800;
+    font-size: 25px;
 }
 
 .header_container {
@@ -75,17 +79,18 @@ main {
 #menu_item {
     margin: auto;
     padding: auto;
+    color: #4683c9;
     
 }
 
 #menu_item1 {
-    margin: auto;
-    padding: auto;
     text-decoration: none;
     font-size: 30px;
     color: #cce4ff;
-    left: 2%;
+    left: 20px;
+    position: absolute;
 }
+
 
 #menu_item1:hover {
     color: #4683c9;
@@ -178,8 +183,8 @@ main {
     font-family: 'Montserrat', sans-serif;
     color: #0f3752;
     background: linear-gradient(to left, #0b3971, #0a4690);
-    min-width: 100wv;
     width: 100vw;
+    min-width: 100wv;
     height: 60px;
 
 }
@@ -320,7 +325,7 @@ h2 {
 }
 
 .container_lab {
-    width: 800px;
+    width: 900px;
 }
 
 
@@ -439,6 +444,15 @@ h2 {
 
 }
 
+
+#elseif_button_add00, #elseif_button_remove00 {
+    background-color: #92c1f7;
+}
+
+#elseif_button_add00:hover, #elseif_button_remove00:hover {
+    background-color: #144e91;
+    ;
+}
 .condition_select_button_add {
     margin-left: 5px;
     height: 45px;
@@ -529,11 +543,25 @@ select {
     margin-right: 5px;
 }
 
-#create_rule {
+#create_rule, #clear_rule {
     display: flex;
-    margin: auto;
-    padding: auto;
-    margin-bottom: 50px;
+    margin: auto 2px auto 2px;
+    padding: 0 19.899px 0 19.899px;
+    margin-bottom: 20px;
+}
+
+#clear_rule {
+    padding: 0 35.5px 0 35.5px;
+}
+
+#rule_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#rule_text {
+    text-align: center;
 }
 
 #new_lab {
@@ -610,4 +638,8 @@ select {
 #lab_info_text {
     font-size: 16px;
     background-color: #77a2d3;
+}
+
+.condition_select_button_remove { 
+    padding: 0 21px 0 21px;
 }

@@ -14,11 +14,9 @@
         <div class="header_container">
             <div class="header_menu">
                 <div class="menu_item">
-                    <h2  id="menu_item"></h2>
+                    <h2 id="menu_item"></h2>
                 </div>
-                <div class="menu_item" id="menu__item1">
-                    <a href="index.html" name="logo" id="menu_item1">Домой</a>
-                </div>
+                <a id="menu_item1" href="index.html" name="logo" id="menu_item1">Домой</a>
             </div>
     </header>
     <div class="container_menu">
@@ -121,15 +119,18 @@
             </div>
             <div class="container_lab">
                 <div id="lab_info">
-                    <pre id="lab_info_text">    Данная лаборатория позволяет создавать свои правила по типу Гипотезы Коллатца
-    на множестве целых чисел и исследовать их на зацикленность. 
-    Программа поддерживает длинную арифметику. 
-    Важные замечания: операция И (логическое умножение) является первостепенной
-    по сравнению с операцией ИЛИ (логическое сложение);
-    «Если N div A» означает, что текущее число N делится
-    на число A нацело (остаток равен нулю); операция деления (“N = N/B”) осуществляет 
-    деление числа N на число B нацело (например, 5/3 == 1);
-    рекомендуется вводить время работы программы от 1 до 10 секунд.</pre>
+                    <pre id="lab_info_text">  Данная виртуальная лаборатория позволяет создавать свои правила по 
+  типу гипотезы Коллатца и исследовать их на зацикленность.            
+  Программа поддерживает длинную арифметику и работает на множестве целых 
+  чисел (можно вводить отрицательные числа (со знаком “-”);
+  положительные числа вводятся без знака “+”).
+  Важные замечания: при составлении правил учитывайте, что операция И (логическое умножение)
+  является первостепенной по сравнению с операцией ИЛИ (логическое сложение);
+  порядок выполнения условий ЕСЛИ, ИНАЧЕ ЕСЛИ и ИНАЧЕ 
+  соответствует правилам программирования;
+  операция деления (N = N/B) осуществляет деление числа N на число B нацело;
+  не рекомендуется вводить время работы программы больше 10 секунд 
+  (если не знаете, какое время ввести, оставьте это поле по умолчанию). </pre>
                 </div>
                 <div class="lab_items">
                     <div class="ifBlock">
@@ -138,11 +139,13 @@
                                 <div class="list_of_conditions">
                                     <pre class="condition_text">Если</pre>
                                     <div id="items_condition00" class="items_condition">
-                                        <pre class="condition_text" id="condition_text00">N div </pre>
-                                        <input type="text" class="condition_input" id="condition_input00" placeholder="2">
+                                        <pre class="condition_text" id="condition_text00">N делится на </pre>
+                                        <input type="text" class="condition_input" id="condition_input00"
+                                            placeholder="2">
                                         <select class="lab_item_selector" id="lab_items_selector00">
                                             <option value='and'>И</option>
-                                            <option value='or'> ИЛИ </option>                                        </select>
+                                            <option value='or'> ИЛИ </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +153,7 @@
                                 <input type="button" id="condition_button_add" class="condition_select_button_add"
                                     value="Добавить">
                                 <input type="button" id="condition_button_remove" class="condition_select_button_remove"
-                                    value="Удалить последнее">
+                                    value="Удалить">
                             </div>
                         </div>
                         <div class="if_action">
@@ -163,9 +166,9 @@
                     </div>
                     <div class="add_conditon_buttons">
                         <input type="button" id="elseif_button_add00" class="condition_select_button"
-                            value="Добавить условие">
+                            value="Добавить новое условие ИНАЧЕ ЕСЛИ">
                         <input type="button" id="elseif_button_remove00" class="condition_select_button"
-                            value="Удалить условие">
+                            value="Удалить последнее условие ИНАЧЕ ЕСЛИ">
                     </div>
                     <div class="else_action">
                         <pre>Иначе N = N * </pre>
@@ -174,15 +177,18 @@
                         <input type="text" class="condition_input" id="action_condition_input_else1" placeholder="1">
                     </div>
                 </div>
-                <input type="button" id="create_rule" class="condition_select_button" value="Составить правило">
-                <div id="new_lab">
-
+                <div id="rule_buttons">
+                    <input type="button" id="create_rule" class="condition_select_button" value="Составить правило">
+                    <input type="button" id="clear_rule" class="condition_select_button" value="Очистить поля">
                 </div>
-                <div id="new_lab_path">
-
-                </div>
+            </div>
+            <div id="new_lab">
+            </div>
+            <div id="new_lab_path">
 
             </div>
+
+        </div>
         </div>
 
     </main>
