@@ -14,6 +14,9 @@ elseif_count = 1
 check_createRule = false;
 check_createRule_error = false
 lab_user_input = [];
+elseif_count_conditions = 0;
+temp_elseif_count_conditions = 0;
+elseif_count_conditions_array = [];
 
 function addButtonClick() {
 
@@ -119,7 +122,7 @@ function addElseif() {
 
     let clonedInput = document.createElement("input");
     clonedInput.className = "condition_input";
-    clonedInput.id = "condition_input" + elseif_count;
+    clonedInput.id = "condition_input" + elseif_count + "0";
     let clonedText = document.getElementById("condition_text00").cloneNode(true);
     let elemText = document.createElement("pre");
     elemText.textContent = "Иначе если ";
@@ -131,7 +134,7 @@ function addElseif() {
     elemText1.textContent = "   То N = N / ";
     let clonedInput1 = document.createElement("input");
     clonedInput1.className = "condition_input";
-    clonedInput1.id = "condition_input" + elseif_count;
+    clonedInput1.id = "condition_input" + elseif_count + "0";
     let elseifActionDiv = document.createElement("div");
     elseifActionDiv.className = "elseif_action";
     elseifActionDiv.id = "elseif_action" + elseif_count;
@@ -141,14 +144,14 @@ function addElseif() {
 
     document.querySelector("#elseifBlock" + elseif_count).append(elseifDiv);
     document.querySelector("div#elseif" + elseif_count).append(clonedNode);
-    clonedNode.id = "items_condition" + elseif_count;
-    document.querySelector("#items_condition" + elseif_count).append(elemText);
-    document.querySelector("#items_condition" + elseif_count).append(clonedText);
+    clonedNode.id = "items_condition" + elseif_count + "0";
+    document.querySelector("#items_condition" + elseif_count + "0").append(elemText);
+    document.querySelector("#items_condition" + elseif_count + "0").append(clonedText);
     clonedText.id = "condition_text" + elseif_count;
-    document.querySelector("#items_condition" + elseif_count).append(clonedInput);
-    clonedInput.id = "condition_input" + elseif_count;
-    document.querySelector("#items_condition" + elseif_count).append(clonedSelect);
-    clonedSelect.id = "lab_items_selector" + elseif_count;
+    document.querySelector("#items_condition" + elseif_count + "0").append(clonedInput);
+    clonedInput.id = "condition_input" + elseif_count + "0";
+    document.querySelector("#items_condition" + elseif_count + "0").append(clonedSelect);
+    clonedSelect.id = "lab_items_selector" + elseif_count + "0";
 
     document.querySelector("#elseif" + elseif_count).append(clonedButton1);
     clonedButton1.id = "condition_button_add" + elseif_count;
@@ -169,14 +172,39 @@ function addElseif() {
     $("#condition_button_add" + (elseif_count - 1)).remove();
     $("#condition_select_button_remove" + (elseif_count - 1)).remove();
 
+    if (elseif_count > 1) {
+        elseif_count_conditions_array.push(elseif_count_conditions);
+    }
+
+    temp_elseif_count_conditions = elseif_count_conditions;
+    elseif_count_conditions = 0;
+
     elseif_count++;
+
 }
 
 function removeElseif() {
 
+    let clonedButton1 = document.getElementById("condition_button_add").cloneNode(true);
+    let clonedButton2 = document.getElementById("condition_button_remove").cloneNode(true);
+
+
     if (elseif_count > 1) {
         elseif_count--;
         $("#elseifBlock" + elseif_count).remove();
+
+        if (elseif_count > 1) {
+            document.querySelector("#elseif" + (elseif_count - 1)).append(clonedButton1);
+            clonedButton1.id = "condition_button_add" + (elseif_count - 1);
+
+
+            document.querySelector("#elseif" + (elseif_count - 1)).appendChild(clonedButton2);
+            clonedButton2.id = "condition_select_button_remove" + (elseif_count - 1);
+
+            clonedButton1.onclick = addCondtionElseIf;
+            clonedButton2.onclick = removeConditionElseif;
+            elseif_count_conditions_array.pop();
+        }
     }
 }
 
@@ -205,34 +233,36 @@ function addCondtion() {
     clonedInput.id = "condition_input" + 0 + condition_count;
     document.querySelector("#items_condition" + 0 + condition_count).append(clonedSelect);
     clonedSelect.id = "lab_items_selector" + 0 + condition_count;
-
     condition_count++;
 
 }
 
 function removeConditionElseif() {
-    $("#items_condition" + (elseif_count - 1) + condition_count).remove();
-    $("#lab_items_selector" + (elseif_count - 1) + condition_count).remove();
-
+    if (elseif_count_conditions > 0) {
+        $("#items_condition" + (elseif_count - 1) + elseif_count_conditions).remove();
+        $("#lab_items_selector" + (elseif_count - 1) + elseif_count_conditions).remove();
+        elseif_count_conditions--;
+    }
 }
 
 function addCondtionElseIf() {
+    elseif_count_conditions++;
     let clonedNode = document.getElementById("items_condition00").cloneNode(false);
     let clonedSelect = document.getElementById("lab_items_selector00").cloneNode(true);
     let clonedInput = document.createElement("input");
     clonedInput.className = "condition_input";
-    clonedInput.id = "condition_input" + (elseif_count - 1) + condition_count;
+    clonedInput.id = "condition_input" + (elseif_count - 1) + elseif_count_conditions;
     let clonedText = document.getElementById("condition_text00").cloneNode(true);
 
 
-    clonedNode.id = "items_condition" + (elseif_count - 1) + condition_count;
-    document.querySelector("#items_condition" + (elseif_count - 1)).append(clonedNode);
-    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedText);
-    clonedText.id = "condition_text" + (elseif_count - 1) + condition_count;
-    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedInput);
-    clonedInput.id = "condition_input" + (elseif_count - 1) + condition_count;
-    document.querySelector("#items_condition" + (elseif_count - 1) + condition_count).append(clonedSelect);
-    clonedSelect.id = "lab_items_selector" + (elseif_count - 1) + condition_count;
+    clonedNode.id = "items_condition" + (elseif_count - 1) + elseif_count_conditions;
+    document.querySelector("#items_condition" + (elseif_count - 1) + "0").append(clonedNode);
+    document.querySelector("#items_condition" + (elseif_count - 1) + elseif_count_conditions).append(clonedText);
+    clonedText.id = "condition_text" + (elseif_count - 1) + elseif_count_conditions;
+    document.querySelector("#items_condition" + (elseif_count - 1) + elseif_count_conditions).append(clonedInput);
+    clonedInput.id = "condition_input" + (elseif_count - 1) + elseif_count_conditions;
+    document.querySelector("#items_condition" + (elseif_count - 1) + elseif_count_conditions).append(clonedSelect);
+    clonedSelect.id = "lab_items_selector" + (elseif_count - 1) + elseif_count_conditions;
 }
 
 
@@ -320,7 +350,7 @@ function drawChart() {
 function reading_data() {
 
     let i = 0;
-    let mas_if = [], mas_elseif = [], mas_result = [], mas_action = [], mas_andor = [];
+    let mas_if = [], mas_elseif = [], mas_result = [], mas_action = [], mas_andor = [], mas_andor_elseif = [];
     while (i < condition_count) {
         let data = document.getElementById("condition_input0" + i).value;
         mas_if.push(checkInput(data));
@@ -329,8 +359,21 @@ function reading_data() {
 
     i = 1
     while (i < elseif_count) {
-        data = document.getElementById("condition_input" + i).value;
-        mas_elseif.push(checkInput(data));
+        mas_elseif.push([])
+        for (let j = 0; j <= elseif_count_conditions_array[i - 1]; j++) {
+            data = document.getElementById("condition_input" + i + j).value;
+            mas_elseif[i - 1].push(checkInput(data));
+        }
+        i++;
+    }
+
+    i = 1
+    while (i < elseif_count) {
+        mas_andor_elseif.push([])
+        for (let j = 0; j <= elseif_count_conditions_array[i - 1] - 1; j++) {
+            data = document.getElementById("lab_items_selector" + i + j).value;
+            mas_andor_elseif[i - 1].push(data);
+        }
         i++;
     }
 
@@ -347,11 +390,15 @@ function reading_data() {
         mas_andor.push(data);
         i++;
     }
+
+
+
     mas_action.push(checkInput(document.getElementById("action_condition_input_else0").value));
     mas_result.push(mas_if);
     mas_result.push(mas_elseif);
     mas_result.push(mas_action);
     mas_result.push(mas_andor);
+    mas_result.push(mas_andor_elseif);
 
     return mas_result;
 
@@ -359,6 +406,7 @@ function reading_data() {
 
 
 function createRule() {
+
     lab_user_input = reading_data();
     let userIf = lab_user_input[0];
     let userElseif = lab_user_input[1];
@@ -385,8 +433,6 @@ function createRule() {
     let userTimerDiv = document.createElement("div");
     userTimerDiv.id = "user_timer_div1";
 
-
-
     let rulecreatedText = document.createElement("pre");
     rulecreatedText.id = "rule_text";
     rulecreatedText.textContent = 'Ваше правило создано! Введите число: ';
@@ -394,8 +440,11 @@ function createRule() {
     let rulecreatedText1 = document.createElement("pre");
     rulecreatedText1.id = "rule_text";
     rulecreatedText1.textContent = "Введите максимальное время работы программы(в секундах): ";
+    $("#new_lab_path").hide();  
 
-    if (array_includes(userIf, [0, 0]) == false && array_includes(userElseif, [0, 0]) == false && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false) {
+
+
+    if (array_includes(userIf, [0, 0]) == false && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false) {
         if (check_createRule == false) {
             $("#rule_text").remove();
             document.querySelector("#new_lab").append(labDiv);
@@ -415,8 +464,14 @@ function createRule() {
 
             let buttonAddRule = document.getElementById("user_number_button");
             buttonAddRule.onclick = addRule;
-            $("#create_rule").hide();
+            document.getElementById("create_rule").value = "Обновить правило";
+            rulecreatedText.textContent = 'Ваше правило создано! Введите число: ';
             check_createRule = true;
+        }
+        else {
+            if (document.getElementById("create_rule").value == 'Обновить правило') {
+                alert("Ваше правило обнолено!");
+            }
         }
     }
     else {
@@ -426,6 +481,11 @@ function createRule() {
             check_createRule_error = true;
         }
     }
+
+    if (elseif_count > 1 && check_createRule) {
+        elseif_count_conditions_array.push(elseif_count_conditions);
+    }
+
 }
 
 
@@ -445,7 +505,7 @@ function array_includes(x, y) {
 
 function addRule() {
     let user_input = checkInput(document.getElementById("userNumberInput").value);
-    let user_conditions = lab_user_input;
+    let user_conditions = reading_data();
     let path = [];
     let div_path = document.createElement("div");
     div_path.id = "lab_path";
@@ -471,14 +531,12 @@ function addRule() {
     $("#cycling_text_block").remove();
 
 
-
-
-
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
     while (array_includes(path, user_input) == false && ((end - start) < parseInt(document.getElementById("userTimerInput").value) * 1000)) {
         let mas = [];
         let array = [];
-
+        let mas_elseif = [];
+        let array_elseif = [];
         path.push(user_input);
         count++;
 
@@ -517,7 +575,6 @@ function addRule() {
         }
 
 
-
         res = array.includes(1);
 
         if (res) {
@@ -525,13 +582,58 @@ function addRule() {
         }
         else {
 
+
             for (let i = 0; i < user_conditions[1].length; i++) {
-                if (numEquality(division(user_input, user_conditions[1][i])[1], [0, 0])) {
-                    user_input = division(user_input, user_conditions[1][i])[0];
+                mas_elseif.push([]);
+                for (let j = 0; j < user_conditions[1][i].length; j++) {
+                    mas_elseif[i].push(numEquality(division(user_input, user_conditions[1][i][j])[1], [0, 0]));
+                }
+            }
+
+            for (let i = 0; i < user_conditions[1].length; i++) {
+                array_elseif.push([]);
+                for (let j = 0; j < user_conditions[1][i].length; j++) {
+                    array_elseif[i].push(mas_elseif[i][j]);
+                    array_elseif[i].push(user_conditions[4][i][j]);
+                }
+                array_elseif[i].pop()
+            }
+
+
+            for (let i = 0; i < array_elseif.length; i++) {
+
+                for (let j = 0; j < array_elseif[i].length; j++) {
+                    if (array_elseif[i][j] == "and") {
+                        let condition = array_elseif[i][j - 1] * array_elseif[i][j + 1];
+                        array_elseif[i].splice(j - 1, 3, condition);
+
+                    }
+                }
+                for (let j = 0; j < array_elseif[i].length; j++) {
+                    if (array_elseif[i][j] == "and") {
+                        let condition = array_elseif[i][j - 1] * array_elseif[i][j + 1];
+                        array_elseif[i].splice(j - 1, 3, condition);
+
+                    }
+                }
+                for (let j = 0; j < array_elseif[i].length; j++) {
+                    if (array_elseif[i][j] == "or") {
+                        array_elseif[i].splice(j, 1);
+
+                    }
+                    if (array_elseif[i][j] == true) {
+                        array_elseif[i][j] = 1;
+                    }
+                }
+
+                if (array_elseif[i].includes(1)) {
+                    user_input = division(user_input, checkInput(document.getElementById("action_condition_input" + (i+1)).value))[0];
                     condition_flag = true;
                     break;
                 }
             }
+
+
             if (condition_flag == false) {
                 user_input = sum(multiply(user_input, checkInput(document.getElementById("action_condition_input_else0").value)), checkInput(document.getElementById("action_condition_input_else1").value));
             }
@@ -569,8 +671,4 @@ function addRule() {
     document.querySelector("#cycling_text_block").append(cycling_text);
     document.querySelector("#cycling_text_block").append(len_step);
     document.querySelector("#cycling_text_block").append(max_step_text);
-
-
-
-
 }
