@@ -106,6 +106,9 @@ function init() {
     let buttonCreateRule = document.getElementById("create_rule")
     buttonCreateRule.onclick = createRule;
 
+    let buttonClearRule = document.getElementById('clear_rule');
+    buttonClearRule.onclick = clearRule;
+
 }
 
 
@@ -419,8 +422,11 @@ function createRule() {
     userNumberInput.className = "condition_input";
     userNumberInput.id = "userNumberInput";
     let timerInput = document.createElement("input");
+    let checkElseifZero = true;
     timerInput.className = "condition_input";
     timerInput.id = "userTimerInput";
+    timerInput.value = "3";
+    timerInput.placeholder = "3"
 
     let labDiv = document.createElement("div");
     labDiv.id = "lab_div1";
@@ -435,20 +441,36 @@ function createRule() {
 
     let rulecreatedText = document.createElement("pre");
     rulecreatedText.id = "rule_text";
-    rulecreatedText.textContent = 'Ваше правило создано! Введите число: ';
+    rulecreatedText.textContent = 'Ваше правило создано! Введите число исходное число N: ';
 
     let rulecreatedText1 = document.createElement("pre");
     rulecreatedText1.id = "rule_text";
     rulecreatedText1.textContent = "Введите максимальное время работы программы(в секундах): ";
     $("#new_lab_path").hide();  
 
+        
+    for (let i = 0; i < elseif_count-1; i++) {
+        if ( document.getElementById("condition_input" + (i+1) + "0").value == "0" ) {
+            checkElseifZero = false;
+        }
+    }
 
 
-    if (array_includes(userIf, [0, 0]) == false && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false) {
+    
+    for (let i = 0; i < userElseif.length; i++) {
+        if (array_includes(userElseif[i], [0, 0])) {
+            checkElseifZero = false;
+        }
+    }
+
+
+
+    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false) {
         if (check_createRule == false) {
             $("#rule_text").remove();
-            document.querySelector("#new_lab").append(labDiv);
             document.querySelector("#new_lab").append(timerDiv);
+            document.querySelector("#new_lab").append(labDiv);
+            
 
             document.querySelector("#lab_div1").append(rulecreatedText);
             document.querySelector("#timer_div1").append(rulecreatedText1);
@@ -464,14 +486,15 @@ function createRule() {
 
             let buttonAddRule = document.getElementById("user_number_button");
             buttonAddRule.onclick = addRule;
-            document.getElementById("create_rule").value = "Обновить правило";
-            rulecreatedText.textContent = 'Ваше правило создано! Введите число: ';
+            document.getElementById("create_rule").value = "Составить правило";
+            rulecreatedText.textContent = 'Ваше правило создано! Введите исходное число N: ';
             check_createRule = true;
         }
         else {
-            if (document.getElementById("create_rule").value == 'Обновить правило') {
+            if (document.getElementById("create_rule").value == 'Составить правило') {
                 alert("Ваше правило обнолено!");
-            }
+                document.getElementById("userNumberInput").value = "";
+            } 
         }
     }
     else {
@@ -486,6 +509,23 @@ function createRule() {
         elseif_count_conditions_array.push(elseif_count_conditions);
     }
 
+}
+
+function clearRule() {
+
+    for (let i = 0; i < condition_count; i++) {
+        document.getElementById("condition_input0" + i).value = "";
+    }
+    
+    for (let i = 0; i <= elseif_count; i++) {
+        removeElseif();
+    }
+
+    document.getElementById("action_condition_input0").value = "" 
+    document.getElementById("action_condition_input_else0").value = "" 
+    document.getElementById("action_condition_input_else1").value = "" 
+    
+    $("#new_lab_path").hide();  
 }
 
 
