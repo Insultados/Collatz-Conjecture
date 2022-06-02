@@ -446,17 +446,19 @@ function createRule() {
     let rulecreatedText1 = document.createElement("pre");
     rulecreatedText1.id = "rule_text";
     rulecreatedText1.textContent = "Введите максимальное время работы программы(в секундах): ";
-    $("#new_lab_path").hide();  
+    $("#new_lab_path").hide();
+    $("#new_lab").show();
 
-        
-    for (let i = 0; i < elseif_count-1; i++) {
-        if ( document.getElementById("condition_input" + (i+1) + "0").value == "0" ) {
+
+
+    for (let i = 0; i < elseif_count - 1; i++) {
+        if (document.getElementById("condition_input" + (i + 1) + "0").value == "0") {
             checkElseifZero = false;
         }
     }
 
 
-    
+
     for (let i = 0; i < userElseif.length; i++) {
         if (array_includes(userElseif[i], [0, 0])) {
             checkElseifZero = false;
@@ -470,7 +472,7 @@ function createRule() {
             $("#rule_text").remove();
             document.querySelector("#new_lab").append(timerDiv);
             document.querySelector("#new_lab").append(labDiv);
-            
+
 
             document.querySelector("#lab_div1").append(rulecreatedText);
             document.querySelector("#timer_div1").append(rulecreatedText1);
@@ -492,9 +494,9 @@ function createRule() {
         }
         else {
             if (document.getElementById("create_rule").value == 'Составить правило') {
-                alert("Ваше правило обнолено!");
+                alert("Ваше правило обновлено!");
                 document.getElementById("userNumberInput").value = "";
-            } 
+            }
         }
     }
     else {
@@ -515,17 +517,22 @@ function clearRule() {
 
     for (let i = 0; i < condition_count; i++) {
         document.getElementById("condition_input0" + i).value = "";
+        removeCondition();
     }
-    
+
     for (let i = 0; i <= elseif_count; i++) {
         removeElseif();
     }
 
-    document.getElementById("action_condition_input0").value = "" 
-    document.getElementById("action_condition_input_else0").value = "" 
-    document.getElementById("action_condition_input_else1").value = "" 
-    
-    $("#new_lab_path").hide();  
+    document.getElementById("action_condition_input0").value = "";
+    document.getElementById("action_condition_input_else0").value = "";
+    document.getElementById("action_condition_input_else1").value = "";
+
+
+    $("#new_lab").html("");
+    $("#new_lab_path").html("");
+    check_createRule = false;
+    lab_user_input = [[-1], [], [-1], [-1], [], []];
 }
 
 
@@ -544,6 +551,7 @@ function array_includes(x, y) {
 
 
 function addRule() {
+
     let user_input = checkInput(document.getElementById("userNumberInput").value);
     let user_conditions = reading_data();
     let path = [];
@@ -569,6 +577,7 @@ function addRule() {
 
     $("#lab_path").remove();
     $("#cycling_text_block").remove();
+
 
 
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
@@ -667,7 +676,7 @@ function addRule() {
                 }
 
                 if (array_elseif[i].includes(1)) {
-                    user_input = division(user_input, checkInput(document.getElementById("action_condition_input" + (i+1)).value))[0];
+                    user_input = division(user_input, checkInput(document.getElementById("action_condition_input" + (i + 1)).value))[0];
                     condition_flag = true;
                     break;
                 }
