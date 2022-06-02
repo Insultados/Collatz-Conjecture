@@ -445,7 +445,8 @@ h2 {
     cursor: pointer;
     background-color: #cce4ff;
     border: none;
-    color: #144e91;
+    color: #072a52;
+    font-weight: 600;
     padding: 8px 16px;
     text-align: center;
     transition: 0.3s;
@@ -458,7 +459,8 @@ h2 {
     cursor: pointer;
     background-color: #cce4ff;
     border: none;
-    color: #144e91;
+    color: #072a52;
+    font-weight: 600;
     padding: 8px 16px;
     text-align: center;
     transition: 0.3s;
@@ -470,11 +472,18 @@ h2 {
     cursor: pointer;
     background-color: #cce4ff;
     border: none;
-    color: #144e91;
+    color: #072a52;
+    font-weight: 600;
     padding: 16px 32px;
     text-align: center;
     transition: 0.3s;
     border-radius: 5px;
+
+}
+
+
+.lab_item_selector {
+    text-align: center;
 }
 
 .condition_select_button:hover {
