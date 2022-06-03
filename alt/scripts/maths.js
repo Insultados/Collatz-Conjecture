@@ -357,6 +357,11 @@ function multiplication(a, b) {
 function multiply(a, b) {
     const x = a.slice(1, a.length);
     const y = b.slice(1, b.length);
+
+    if (numEquality(a, [0,0]) || numEquality(b, [0,0])) {
+        return [0,0];
+    }
+
     let result = [a[0] ^ b[0]];
     result = result.concat(multiplication(x, y));
     return result;
