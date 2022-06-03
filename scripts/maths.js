@@ -232,6 +232,25 @@ function numCompare(arr1, arr2) {
 }
 
 
+function signedNumCompare(arr1, arr2) {
+
+    if (arr1[0] == 0 && arr2[0] == 1) {
+        return false
+    }
+    else if (arr1[0] == 1 && arr2[0] == 0) {
+        return true;
+    }
+    else if (arr1[0] == 1 && arr2[0] == 1){
+        return !(numCompare(arr1.slice(1,arr1.length), arr2.slice(1, arr2.length)));
+    }
+    else {
+        return (numCompare(arr1.slice(1,arr1.length), arr2.slice(1, arr2.length)));
+    }
+}
+
+
+
+
 function numEquality(arr1, arr2) {
     if (arr1.length > arr2.length) {
         return false;

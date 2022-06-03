@@ -577,7 +577,7 @@ function addRule() {
     $("#lab_path").remove();
     $("#cycling_text_block").remove();
 
-    if (user_input ==  -1) {
+    if (user_input == -1) {
         alert("Введите корректное число!");
         return -1;
     }
@@ -692,8 +692,8 @@ function addRule() {
                 condition_flag = false;
             }
         }
-
-        if (numCompare(max_step, user_input) == true) {
+        console.log(signedNumCompare(max_step, user_input));
+        if (signedNumCompare(max_step, user_input) == true) {
             max_step = user_input;
 
         }
@@ -706,7 +706,7 @@ function addRule() {
     if (array_includes(path, user_input)) {
         cycling_text.textContent = 'Программа зациклилась на числе: ' + user_input.slice(1, user_input.length).join("");
         len_step.textContent = 'Кол-во шагов: ' + count;
-        max_step_text.textContent = 'Максимальное число: ' + max_step.slice(1, max_step.length).join("");
+        max_step_text.textContent = (max_step[0] == 0) ? 'Максимальное число: ' + max_step.slice(1, max_step.length).join("") : 'Максимальное число: ' + "-" + max_step.slice(1, max_step.length).join("");
 
     }
     else {
