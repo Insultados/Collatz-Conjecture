@@ -395,8 +395,6 @@ function reading_data() {
     }
 
 
-
-    mas_action.push(checkInput(document.getElementById("action_condition_input_else0").value));
     mas_result.push(mas_if);
     mas_result.push(mas_elseif);
     mas_result.push(mas_action);
@@ -467,7 +465,7 @@ function createRule() {
 
 
 
-    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false) {
+    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val())) && Number.isInteger(parseInt($("#action_condition_input_else0").val()))) {
         if (check_createRule == false) {
             $("#rule_text").remove();
             document.querySelector("#new_lab").append(timerDiv);
