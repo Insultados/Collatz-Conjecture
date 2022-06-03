@@ -704,7 +704,7 @@ function addRule() {
     }
 
     if (array_includes(path, user_input)) {
-        cycling_text.textContent = 'Программа зациклилась на числе: ' + user_input.slice(1, user_input.length).join("");
+        cycling_text.textContent =  (user_input[0] == 0 ) ? 'Программа зациклилась на числе: ' + user_input.slice(1, user_input.length).join("") : 'Программа зациклилась на числе: ' + "-" +user_input.slice(1, user_input.length).join("");
         len_step.textContent = 'Кол-во шагов: ' + count;
         max_step_text.textContent = (max_step[0] == 0) ? 'Максимальное число: ' + max_step.slice(1, max_step.length).join("") : 'Максимальное число: ' + "-" + max_step.slice(1, max_step.length).join("");
 
