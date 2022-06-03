@@ -579,6 +579,7 @@ function addRule() {
 
     if (user_input ==  -1) {
         alert("Введите корректное число!");
+        return -1;
     }
 
 
