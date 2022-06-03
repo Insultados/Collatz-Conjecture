@@ -551,7 +551,6 @@ function array_includes(x, y) {
 
 
 function addRule() {
-
     let user_input = checkInput(document.getElementById("userNumberInput").value);
     let user_conditions = reading_data();
     let path = [];
@@ -578,6 +577,9 @@ function addRule() {
     $("#lab_path").remove();
     $("#cycling_text_block").remove();
 
+    if (user_input ==  -1) {
+        alert("Введите корректное число!");
+    }
 
 
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
@@ -588,7 +590,6 @@ function addRule() {
         let array_elseif = [];
         path.push(user_input);
         count++;
-
         for (let i = 0; i < user_conditions[0].length; i++) {
             mas.push(numEquality(division(user_input, user_conditions[0][i])[1], [0, 0]));
         }
