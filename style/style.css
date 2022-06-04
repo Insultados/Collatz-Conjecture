@@ -182,7 +182,7 @@ main {
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(to left, #0b3971, #0a4690);
     width: 100vw;
-    min-width: 100wv;
+    min-width: 100vw;
     height: 60px;
     color: white;
     text-align: center;
