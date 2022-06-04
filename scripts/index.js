@@ -206,6 +206,7 @@ function removeElseif() {
 
             clonedButton1.onclick = addCondtionElseIf;
             clonedButton2.onclick = removeConditionElseif;
+            elseif_count_conditions = elseif_count_conditions_array[elseif_count_conditions_array.length-1];
             elseif_count_conditions_array.pop();
         }
     }
@@ -450,8 +451,16 @@ function createRule() {
 
 
     for (let i = 0; i < elseif_count - 1; i++) {
-        if (document.getElementById("condition_input" + (i + 1) + "0").value == "0") {
-            checkElseifZero = false;
+        let j = 0;
+        while (true) {
+            try {
+                if (document.getElementById("condition_input" + (i + 1) + j).value == "0") {
+                    checkElseifZero = false;
+                }
+                j++;
+            } catch {
+                break;
+            }
         }
     }
 
@@ -580,20 +589,13 @@ function addRule() {
         return -1;
     }
 
-    if (parseInt(document.getElementById("userTimerInput").value) <= 0 || Number.isInteger(parseInt(document.getElementById("userTimerInput").value)) == false) {
-        alert("Введите корректное время! Число должно быть больше 0");
-        return -1;
-    }
-
 
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
-    while (array_includes(path, user_input) == false && ((end - start) < parseInt(document.getElementById("userTimerInput").value) * 1000 )) {
+    while (array_includes(path, user_input) == false && ((end - start) < parseInt(document.getElementById("userTimerInput").value) * 1000)) {
         let mas = [];
         let array = [];
         let mas_elseif = [];
         let array_elseif = [];
-
-
         path.push(user_input);
         count++;
         for (let i = 0; i < user_conditions[0].length; i++) {
