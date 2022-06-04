@@ -71,7 +71,7 @@ main {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     font-weight: 600;
-    overflow-y:scroll;
+    overflow-y: scroll;
     height: 120px;
     padding-left: 15px;
 }
@@ -80,7 +80,7 @@ main {
     margin: auto;
     padding: auto;
     color: #4683c9;
-    
+
 }
 
 #menu_item1 {
@@ -94,7 +94,7 @@ main {
 
 #menu_item1:hover {
     color: #4683c9;
-    
+
 }
 
 #key {
@@ -202,6 +202,7 @@ main {
     margin: auto 20px auto 20px;
     white-space: nowrap;
 }
+
 .footer_container_link:hover {
     color: #b3d5ff;
 }
@@ -257,7 +258,8 @@ h2 {
     padding: 5px;
 }
 
-#main_text, #instruction_text {
+#main_text,
+#instruction_text {
     text-align: justify;
     min-width: 20%;
     padding: 5px;
@@ -349,8 +351,38 @@ h2 {
 }
 
 .container_lab {
-    width: 900px;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    box-sizing: border-box;
+
 }
+
+@media (max-width: 1000px) {
+    .container_lab {
+        width: 800px;
+    }
+}
+
+@media (max-width: 850px) {
+    .container_lab {
+        width: 700px;
+    }
+}
+
+@media (max-width: 750px) {
+    .container_lab {
+        width: 520px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container_lab {
+        width: 350px;
+    }
+}
+
+
 
 
 #code_.collatz_button {
@@ -469,16 +501,19 @@ h2 {
 }
 
 
-#elseif_button_add00, #elseif_button_remove00 {
+#elseif_button_add00,
+#elseif_button_remove00 {
     background-color: #92c1f7;
 }
 
-#elseif_button_add00:hover, #elseif_button_remove00:hover {
+#elseif_button_add00:hover,
+#elseif_button_remove00:hover {
     background-color: #144e91;
     ;
 }
+
 .condition_select_button_add {
-    margin-left: 5px;
+    margin: 5px;
     height: 45px;
     cursor: pointer;
     background-color: #cce4ff;
@@ -492,7 +527,7 @@ h2 {
 }
 
 .condition_select_button_remove {
-    margin-left: 5px;
+    margin: 5px;
     height: 45px;
     cursor: pointer;
     background-color: #cce4ff;
@@ -516,7 +551,7 @@ h2 {
     text-align: center;
     transition: 0.3s;
     border-radius: 5px;
-
+    margin: 4px 2px 4px 2px;
 }
 
 
@@ -567,7 +602,8 @@ select {
     margin-right: 5px;
 }
 
-#create_rule, #clear_rule {
+#create_rule,
+#clear_rule {
     display: flex;
     margin: auto 2px auto 2px;
     padding: 0 19.899px 0 19.899px;
@@ -660,10 +696,10 @@ select {
 }
 
 #lab_info_text {
-    font-size: 16px;
+    font-size: 15px;
     background-color: #77a2d3;
 }
 
-.condition_select_button_remove { 
+.condition_select_button_remove {
     padding: 0 21px 0 21px;
 }
