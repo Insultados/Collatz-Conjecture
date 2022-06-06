@@ -7,6 +7,6 @@
 Ссылка на сайт: https://insultados.github.io/Collatz-Conjecture/index.html
 
 Для тестирование лаборатории нужно:
-  1) Скачать папку Collatz_Conjecture-main себе на компьютер
-  2) Открыть в папке Collatz_Conjecture-main файл index.html с помощью браузера
+  1) Скачать папку Collatz-Conjecture-main себе на компьютер
+  2) Открыть в папке Collatz-Conjecture-main файл index.html с помощью браузера
   
