@@ -466,7 +466,7 @@ function createRule() {
         let j = 0;
         while (true) {
             try {
-                if (document.getElementById("condition_input" + (i + 1) + j).value == "0") {
+                if (document.getElementById("condition_input" + (i + 1) + j).value == "0" ||  ((document.getElementById("condition_input" + (i + 1) + j).value[0] == 0 && (document.getElementById("condition_input" + (i + 1) + j).value).length > 1))) {
                     checkElseifZero = false;
                 }
                 j++;
@@ -486,7 +486,7 @@ function createRule() {
 
 
 
-    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val())) && Number.isInteger(parseInt($("#action_condition_input_else0").val()))) {
+    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val())) && Number.isInteger(parseInt($("#action_condition_input_else0").val())) && !($("#action_condition_input_else1").val()[0] == '0' && $("#action_condition_input_else1").val().length > 1) && !($("#action_condition_input_else0").val()[0] == '0' && $("#action_condition_input_else0").val().length > 1) && parseInt($("#action_condition_input_else0").val())) {
         if (check_createRule == false) {
             $("#rule_text").remove();
             $("#timer_div1").show();
