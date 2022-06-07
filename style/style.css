@@ -73,6 +73,7 @@ main {
     font-weight: 600;
     overflow-y: scroll;
     height: 120px;
+    width: 500px;
     padding-left: 15px;
 }
 
@@ -98,7 +99,7 @@ main {
 }
 
 #key {
-    width: 100%;
+    width: 300px;
     background-color: #cce4ff;
     border: none;
     color: #144e91;
@@ -108,7 +109,7 @@ main {
 }
 
 .collatz_button {
-    width: 43%;
+    width: 200px;
     margin: 10px;
     cursor: pointer;
     background-color: #cce4ff;
@@ -146,7 +147,14 @@ main {
     background-color: white;
     flex-grow: 1;
     justify-content: center;
+    align-items: center;
 
+}
+
+.main_info_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -362,17 +370,29 @@ h2 {
     .container_lab {
         width: 800px;
     }
+    #path, #main_info {
+        width: 500px;
+    }
 }
 
 @media (max-width: 850px) {
     .container_lab {
         width: 700px;
     }
+    #path {
+        width: 400px;
+    }
+    #main_info {
+        width: 385px;
+    }
 }
 
 @media (max-width: 750px) {
     .container_lab {
         width: 520px;
+    }
+    #menu_item1 {
+        display: none;
     }
 }
 
@@ -494,9 +514,12 @@ h2 {
 }
 
 .add_conditon_buttons {
+    display: flex;
+    flex-wrap: wrap;
     padding: auto;
     margin: 10px auto 10px auto;
-
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -620,7 +643,7 @@ select {
     justify-content: center;
 }
 
-#rule_text {
+#rule_text, #rule_text1 {
     text-align: center;
 }
 
