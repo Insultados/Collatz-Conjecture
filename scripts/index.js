@@ -278,6 +278,10 @@ function algorithmCollatz(userInput) {
     let curr = [];
     let number = count;
     let path = document.getElementById("path");
+    let start = new Date().getTime();
+    let end = 0;
+    let user_time = 10000;
+
     userInput = isNumber(userInput);
     path.innerHTML += (count + 1) + ") " + userInput.join('') + "</br>";
 
@@ -290,7 +294,7 @@ function algorithmCollatz(userInput) {
     index = arrChart[count].length;
     arrChart[count][index] = num;
 
-    while (len != 1 || userInput[0] != 1) {
+    while ((len != 1 || userInput[0] != 1) && end-start < user_time) {
         if (userInput[len - 1] % 2 == 0) {
             userInput = divisionTwo(userInput);
         }
@@ -317,6 +321,14 @@ function algorithmCollatz(userInput) {
 
 
         path.innerHTML += (count + 1) + ") " + userInput.join('') + "</br>";
+        end = new Date().getTime();
+
+        if (end-start > user_time) {
+            let user_confirm = confirm("Программа работает слишком долго! Хотите продолжить? (возможны проблемы)");
+            if (user_confirm) {
+                user_time *= 10;
+            }
+        }
     }
     for (i = count + 1; i < arrChart.length; i += 1) {
         arrChart[i][index] = null;
@@ -443,7 +455,7 @@ function createRule() {
     rulecreatedText.textContent = 'Ваше правило создано! Введите число исходное число N: ';
 
     let rulecreatedText1 = document.createElement("pre");
-    rulecreatedText1.id = "rule_text";
+    rulecreatedText1.id = "rule_text1";
     rulecreatedText1.textContent = "Введите максимальное время работы программы(в секундах): ";
     $("#new_lab_path").hide();
     $("#new_lab").show();
@@ -477,11 +489,13 @@ function createRule() {
     if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val())) && Number.isInteger(parseInt($("#action_condition_input_else0").val()))) {
         if (check_createRule == false) {
             $("#rule_text").remove();
+            $("#timer_div1").show();
+            $("#lab_div1").show();
             document.querySelector("#new_lab").append(timerDiv);
             document.querySelector("#new_lab").append(labDiv);
 
 
-            document.querySelector("#lab_div1").append(rulecreatedText);
+            document.querySelector("#new_lab").append(rulecreatedText);
             document.querySelector("#timer_div1").append(rulecreatedText1);
 
             document.querySelector("#lab_div1").append(userNumberDiv);
@@ -498,19 +512,31 @@ function createRule() {
             document.getElementById("create_rule").value = "Составить правило";
             rulecreatedText.textContent = 'Ваше правило создано! Введите исходное число N: ';
             check_createRule = true;
+            check_createRule_error = false;
+
         }
         else {
             if (document.getElementById("create_rule").value == 'Составить правило') {
                 alert("Ваше правило обновлено!");
                 document.getElementById("userNumberInput").value = "";
+                $("#timer_div1").show();
+                $("#lab_div1").show();
+                check_createRule_error = false;
+
+
             }
         }
     }
     else {
         if (check_createRule_error == false) {
+            $("#timer_div1").remove();
+            $("#lab_div1").remove();
+            $("#rule_text").remove();
             rulecreatedText.textContent = 'Введены некорректные данные при создании правила! Попробуйте заново';
             document.querySelector("#new_lab").append(rulecreatedText);
             check_createRule_error = true;
+            check_createRule = false;
+            
         }
     }
 
