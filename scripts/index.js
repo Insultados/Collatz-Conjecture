@@ -135,7 +135,7 @@ function addElseif() {
     document.querySelector(".list_of_elseif").append(elseifblock);
     elseifblock.id = "elseifBlock" + elseif_count;
     let elemText1 = document.createElement("pre");
-    elemText1.textContent = "   То N = N / ";
+    elemText1.textContent = "   То N = N ÷ ";
     let clonedInput1 = document.createElement("input");
     clonedInput1.className = "condition_input";
     clonedInput1.id = "condition_input" + elseif_count + "0";
