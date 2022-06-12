@@ -257,6 +257,16 @@ h2 {
     height: 500px;
 }
 
+#linechart_material_lab {
+    border-width: 15px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 15px;
+    width: 700px;
+    height: 500px;
+    display: flex;
+}
+
 .collatz_item {
     position: flex;
     flex-direction: row;
@@ -734,4 +744,73 @@ select {
     .container_lab {
         width: 390px;
     }
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    margin: 0px auto 50px auto;
+    text-align: center;
+}
+
+#main_container_developers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#list_of_developers {
+    display: flex;
+    padding: 10px 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.developer {
+    width: 350px;
+    height: 200px;
+    margin: 10px 10px;
+    color: #245791;
+    font-weight: 600;
+    background-color: #92c1f7;
+    border-radius: 5px;
+    border-width: 5px;
+    border-color: #92c1f7;
+    border-style: solid;
+}
+
+.developer_name {
+    color: rgb(17, 52, 108);
+    background-color: #6aa5ee;
+    display:block;
+    width: 100%;
+}
+
+.developer_info {
+    margin: 8px 5px;
+}
+
+#list_of_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.info_links {
+    font-size: 22px;
+    color: rgb(17, 52, 108);
+    font-weight: 550;
+}
+
+.info_links:hover {
+    color: #cce4ff;
+    font-weight: 800;
+}
+
+#main_container_project_info {
+    display: flex;
+    margin: 0px 50px 20px 50px;
+    padding: auto;
 }
