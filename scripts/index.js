@@ -8,6 +8,7 @@ $(".container_main").hide();
 $(".container_lab").hide();
 
 let arrChart = [];
+let arrChartLab = [];
 window.onload = init;
 condition_count = 1;
 elseif_count = 1
@@ -206,7 +207,7 @@ function removeElseif() {
 
             clonedButton1.onclick = addCondtionElseIf;
             clonedButton2.onclick = removeConditionElseif;
-            elseif_count_conditions = elseif_count_conditions_array[elseif_count_conditions_array.length-1];
+            elseif_count_conditions = elseif_count_conditions_array[elseif_count_conditions_array.length - 1];
             elseif_count_conditions_array.pop();
         }
     }
@@ -294,7 +295,7 @@ function algorithmCollatz(userInput) {
     index = arrChart[count].length;
     arrChart[count][index] = num;
 
-    while ((len != 1 || userInput[0] != 1) && end-start < user_time) {
+    while ((len != 1 || userInput[0] != 1) && end - start < user_time) {
         if (userInput[len - 1] % 2 == 0) {
             userInput = divisionTwo(userInput);
         }
@@ -323,7 +324,7 @@ function algorithmCollatz(userInput) {
         path.innerHTML += (count + 1) + ") " + userInput.join('') + "</br>";
         end = new Date().getTime();
 
-        if (end-start > user_time) {
+        if (end - start > user_time) {
             let user_confirm = confirm("Программа работает слишком долго! Хотите продолжить? (возможны проблемы)");
             if (user_confirm) {
                 user_time *= 10;
@@ -347,20 +348,44 @@ function drawChart() {
     data.addColumn('number', 'Steps');
 
     for (i = 1; i < arrChart[0].length; i += 1) {
-        data.addColumn('number', arrChart[0][i]);
+        if (arrChart[0][i] < 10000000000)
+            data.addColumn('number', arrChart[0][i]);
+        else
+            data.addColumn('number', arrChart[0][i].toExponential(2));
     }
     data.addRows(arrChart);
 
     let options = {
         chart: {
             title: 'График пути чисел: ',
-            responsive: false
         },
-        responsive: false
-
-
     };
     let chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+    chart.draw(data, google.charts.Line.convertOptions(options));
+}
+
+
+function drawChartLab() {
+
+    let data = new google.visualization.DataTable();
+    data.addColumn('number', 'Steps');
+
+    for (i = 1; i < arrChartLab[0].length; i += 1) {
+        if (arrChartLab[0][i] < 10000000000)
+            data.addColumn('number', arrChartLab[0][i]);
+        else
+            data.addColumn('number', arrChartLab[0][i].toExponential(2));
+    }
+    data.addRows(arrChartLab);
+
+    let options = {
+        chart: {
+            title: 'График пути чисел: ',
+        },
+
+    };
+    let chart = new google.charts.Line(document.getElementById('linechart_material_lab'));
 
     chart.draw(data, google.charts.Line.convertOptions(options));
 }
@@ -468,7 +493,7 @@ function createRule() {
         let j = 0;
         while (true) {
             try {
-                if (document.getElementById("condition_input" + (i + 1) + j).value == "0" ||  ((document.getElementById("condition_input" + (i + 1) + j).value[0] == 0 && (document.getElementById("condition_input" + (i + 1) + j).value).length > 1))) {
+                if (document.getElementById("condition_input" + (i + 1) + j).value == "0" || ((document.getElementById("condition_input" + (i + 1) + j).value[0] == 0 && (document.getElementById("condition_input" + (i + 1) + j).value).length > 1))) {
                     checkElseifZero = false;
                 }
                 j++;
@@ -488,10 +513,10 @@ function createRule() {
 
 
 
-    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false 
-      && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val())) 
-      && Number.isInteger(parseInt($("#action_condition_input_else0").val())) && !($("#action_condition_input_else1").val()[0] == '0' && $("#action_condition_input_else1").val().length > 1) 
-      && !($("#action_condition_input_else0").val()[0] == '0' && $("#action_condition_input_else0").val().length > 1) && parseInt($("#action_condition_input_else0").val())) {
+    if (array_includes(userIf, [0, 0]) == false && array_includes(userAction, [0, 0]) == false && checkElseifZero && userIf.includes(-1) == false
+        && userElseif.includes(-1) == false && userAction.includes(-1) == false && Number.isInteger(parseInt($("#action_condition_input_else1").val()))
+        && Number.isInteger(parseInt($("#action_condition_input_else0").val())) && !($("#action_condition_input_else1").val()[0] == '0' && $("#action_condition_input_else1").val().length > 1)
+        && !($("#action_condition_input_else0").val()[0] == '0' && $("#action_condition_input_else0").val().length > 1) && parseInt($("#action_condition_input_else0").val())) {
 
         if (check_createRule == false) {
             $("#rule_text").remove();
@@ -527,6 +552,7 @@ function createRule() {
                 document.getElementById("userNumberInput").value = "";
                 $("#timer_div1").show();
                 $("#lab_div1").show();
+                arrChartLab = [];
                 check_createRule_error = false;
 
 
@@ -542,7 +568,7 @@ function createRule() {
             document.querySelector("#new_lab").append(rulecreatedText);
             check_createRule_error = true;
             check_createRule = false;
-            
+
         }
     }
 
@@ -571,6 +597,7 @@ function clearRule() {
     $("#new_lab").html("");
     $("#new_lab_path").html("");
     check_createRule = false;
+    arrChartLab = [];
     lab_user_input = [[-1], [], [-1], [-1], [], []];
 }
 
@@ -599,6 +626,7 @@ function addRule() {
     $("#new_lab_path").show();
     let end = 0;
     let start = new Date().getTime();
+    let check_cycling = false;
 
     let len_step = document.createElement("pre");
     len_step.id = "len_step1";
@@ -612,6 +640,8 @@ function addRule() {
     cycling_text.id = "cycling_text";
     cycling_text_block.id = "cycling_text_block";
     let count = 1;
+    let lab_chart = document.createElement("div");
+    lab_chart.id = "linechart_material_lab";
 
     $("#lab_path").remove();
     $("#cycling_text_block").remove();
@@ -620,6 +650,15 @@ function addRule() {
         alert("Введите корректное число!");
         return -1;
     }
+
+
+    if (count - 1 >= arrChartLab.length) {
+        arrChartLab.push([]);
+        arrChartLab[count - 1][0] = count;
+    }
+    let index = arrChartLab[count - 1].length;
+    arrChartLab[count - 1][index] = parseInt(user_input.slice(1, user_input.length).join(""));
+
 
 
     div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
@@ -731,7 +770,13 @@ function addRule() {
                 condition_flag = false;
             }
         }
-        console.log(signedNumCompare(max_step, user_input));
+
+        if (count - 1 >= arrChartLab.length) {
+            arrChartLab.push([]);
+            arrChartLab[count - 1][0] = count;
+        }
+        arrChartLab[count - 1][index] = parseInt(user_input.slice(1, user_input.length).join(""));
+
         if (signedNumCompare(max_step, user_input) == true) {
             max_step = user_input;
 
@@ -739,11 +784,16 @@ function addRule() {
 
         div_path.innerHTML += (user_input[0] == 0) ? count + ") " + user_input.slice(1, user_input.length).join("") + "</br>" : count + ") " + "-" + user_input.slice(1, user_input.length).join("") + "</br>";
         end = new Date().getTime();
+        check_cycling = array_includes(path, user_input);
 
     }
 
+    for (i = count; i < arrChartLab.length; i += 1) {
+        arrChartLab[i][index] = null;
+    }
+
     if (array_includes(path, user_input)) {
-        cycling_text.textContent =  (user_input[0] == 0 ) ? 'Программа зациклилась на числе: ' + user_input.slice(1, user_input.length).join("") : 'Программа зациклилась на числе: ' + "-" +user_input.slice(1, user_input.length).join("");
+        cycling_text.textContent = (user_input[0] == 0) ? 'Программа зациклилась на числе: ' + user_input.slice(1, user_input.length).join("") : 'Программа зациклилась на числе: ' + "-" + user_input.slice(1, user_input.length).join("");
         len_step.textContent = 'Кол-во шагов: ' + count;
         max_step_text.textContent = (max_step[0] == 0) ? 'Максимальное число: ' + max_step.slice(1, max_step.length).join("") : 'Максимальное число: ' + "-" + max_step.slice(1, max_step.length).join("");
 
@@ -756,9 +806,16 @@ function addRule() {
     }
 
 
+    console.log(path);
     document.querySelector("#new_lab_path").append(div_path);
     document.querySelector("#new_lab_path").append(cycling_text_block);
     document.querySelector("#cycling_text_block").append(cycling_text);
     document.querySelector("#cycling_text_block").append(len_step);
     document.querySelector("#cycling_text_block").append(max_step_text);
+
+    if ((check_cycling)) {
+        document.querySelector("#cycling_text_block").append(lab_chart);
+        google.charts.load('current', { 'packages': ['line'] });
+        google.charts.setOnLoadCallback(drawChartLab);
+    }
 }
