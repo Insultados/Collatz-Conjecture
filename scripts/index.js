@@ -377,6 +377,7 @@ function drawChartLab() {
         else
             data.addColumn('number', arrChartLab[0][i].toExponential(2));
     }
+
     data.addRows(arrChartLab);
 
     let options = {
@@ -657,7 +658,8 @@ function addRule() {
         arrChartLab[count - 1][0] = count;
     }
     let index = arrChartLab[count - 1].length;
-    arrChartLab[count - 1][index] = parseInt(user_input.slice(1, user_input.length).join(""));
+    arrChartLab[count - 1][index] = (user_input[0] == 0) ? parseInt(user_input.slice(1, user_input.length).join("")) : -parseInt(user_input.slice(1, user_input.length).join(""));
+
 
 
 
@@ -775,7 +777,7 @@ function addRule() {
             arrChartLab.push([]);
             arrChartLab[count - 1][0] = count;
         }
-        arrChartLab[count - 1][index] = parseInt(user_input.slice(1, user_input.length).join(""));
+        arrChartLab[count - 1][index] = (user_input[0] == 0) ? parseInt(user_input.slice(1, user_input.length).join("")) :  -parseInt(user_input.slice(1, user_input.length).join(""));
 
         if (signedNumCompare(max_step, user_input) == true) {
             max_step = user_input;
